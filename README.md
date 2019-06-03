@@ -15,7 +15,7 @@ op https://www.clo.nl/ zijn meerdere datasets te vinden over onder andere: vangs
 deze stacked line chart zal data bevatten van de visstand en de visvangst in miljoen Kg per jaar. Er is een keuze van 4 visstoorten die door middel van een dropdown menu te selecteren zijn.
 
 ### 2. stacked bar chart
-Deze stacked bar chart zal per jaar het type vistechniek in miljoen PK-dagen laten zien. Zodra er met de slider een jaar geselecteerd word zal dat jaar worden gehilight
+Deze stacked bar chart zal per jaar het type vistechniek in miljoen PK-dagen laten zien. Zodra er met de slider een jaar geselecteerd word zal dat jaar worden gehilight. ook wil ik het mogelijk maken om op een jaar te klikken in de bar chart die vervolgens chart 3 en 4 iets laat ondernemen.
 
 ### 3. pie chart
 de ze pie chart zal per jaar (geselecteerd door de slider) de hoeveelheid waarnemingen van elke vissoort tegen elkaar uitzetten.
@@ -31,4 +31,4 @@ Bijvoorbeeld:
 * consumptie van duurzame vis
 
 ## Doel
-Met deze visualisaties hoop ik een duidelijk beeld te creeeren over welke soorten visserij invloed hebben op welke vissoorten.
+Met deze visualisaties hoop ik een duidelijk beeld te creëren over welke soorten visserij invloed hebben op welke vissoorten.
