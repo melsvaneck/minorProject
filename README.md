@@ -7,6 +7,8 @@ in het afgolopen jaar is er aan ongeveer 800 miljoen kilo vis gevangen door Nede
 
 op https://www.clo.nl/ zijn meerdere datasets te vinden over onder andere: vangst bestanden van vissoorten, waarnemingen van o.a roggen haaien en bruinvisseen en gebruikte vistechnieken door de jaren heen, ik wil al deze data bundelen in een duidelijk overzicht wat inzicht biedt van invloeden van de visserij op het visbestand in de noordzee.
 
+## Doel
+Met deze visualisaties hoop ik een duidelijk beeld te creëren over welke soorten visserij invloed hebben op welke vissoorten.
 
 ## Opzet
 ![GitHub Logo](/images/voorstel.png)
@@ -29,6 +31,3 @@ Bijvoorbeeld:
 * Aandeel van de grote vissen in vangst per jaar
 * info over de bodemfauna
 * invloed van groei in consumptie van duurzam gevangen vis
-
-## Doel
-Met deze visualisaties hoop ik een duidelijk beeld te creëren over welke soorten visserij invloed hebben op welke vissoorten.
