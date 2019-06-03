@@ -22,3 +22,13 @@ de ze pie chart zal per jaar (geselecteerd door de slider) de hoeveelheid waarne
 
 ### 4. bar/stacked bar chart
 deze bar chart zal van andere diersoorten/haaien en roggen het aantal waarnemingen van dat jaar laten zien.
+
+### 5. Extra's
+Eventueel wil ik ook nog een aantal extra charts maken op basis van de extra data die ik vind.
+Bijvoorbeeld:
+* Aandeel van de grote vissen in vangst per jaar
+* info over de bodemfauna
+* consumptie van duurzame vis
+
+## Doel
+Met deze visualisaties hoop ik een duidelijk beeld te creeeren over welke soorten visserij invloed hebben op welke vissoorten.
