@@ -9,4 +9,4 @@ op https://www.clo.nl/ zijn meerdere datasets te vinden over onder andere: vangs
 
 
 ## Opzet
-![GitHub Logo](/images/voorstel.jpg)
+![GitHub Logo](/images/voorstel2.png)
