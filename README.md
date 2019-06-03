@@ -10,3 +10,15 @@ op https://www.clo.nl/ zijn meerdere datasets te vinden over onder andere: vangs
 
 ## Opzet
 ![GitHub Logo](/images/voorstel2.png)
+
+### 1. stacked line chart
+deze stacked line chart zal data bevatten van de visstand en de visvangst in miljoen Kg per jaar. Er is een keuze van 4 visstoorten die door middel van een dropdown menu te selecteren zijn.
+
+### 2. stacked bar chart
+Deze stacked bar chart zal per jaar het type vistechniek in miljoen PK-dagen laten zien. Zodra er met de slider een jaar geselecteerd word zal dat jaar worden gehilight
+
+### 3. pie chart
+de ze pie chart zal per jaar (geselecteerd door de slider) de hoeveelheid waarnemingen van elke vissoort tegen elkaar uitzetten.
+
+### 4. bar/stacked bar chart
+deze bar chart zal van andere diersoorten/haaien en roggen het aantal waarnemingen van dat jaar laten zien.
