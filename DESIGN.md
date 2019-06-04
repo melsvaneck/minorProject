@@ -1,38 +1,27 @@
 # Design document
 
-## Data sources
-De data haal ik van de website https://www.clo.nl/, deze website beheerd data over het milieu in Nederland. De data word aangeleverd in verschillende Excel bestanden, deze zet ik om naar CSV bestanden, hierna zullen ze in 3 verschillende JSON-bestanden worden gefuseerd, één voor de visvangst en het bestand van deze gevangen vissen, de visserij-technieken en een voor de trend van diersoorten in de noordzee.
-
 ### Data Lijst
-* [Bruinvissen trend](Data/Bruinvissen.csv)
-* [Eikapsels trend](Data/Eikapsels.csv)
-* [vangst bestand grote vis](Data/groteVis.csv)
-* [haaien en roggen trend](Data/haaiRog.csv)
-* [vissoorten trend](Data/vissenTrend.csv)
-* [gebruikte vistechnieken](Data/visTechnieken.csv)
-* [vogels trend](Data/vogels.csv)
-* [zoogdieren trend](Data/zoogdieren.csv)
-* [vangst data](Data/visVangst.csv)
-* [bodemfauna trend](Data/bodemFauna.csv)
+De data haal ik van de website https://www.clo.nl/, deze website beheerd data over het milieu in Nederland. De data word aangeleverd in verschillende Excel bestanden.
+
+## Data handling
+De groep CSV-bestanden zal worden omgezet naar JSON-files door middel van de pandas library in python. hierna zullen alle files in javascript worden samengevoegd tot een drietal JSON-files. één voor de visvangst en het bestand van deze gevangen vissen, een voor de visserij-technieken en een voor de trend van diersoorten in de noordzee.De Json files zullen uit de volgende bestanden bestaan:
 
 ### visserij Technieken
- * gebruikte visserij-technieken
+ * [gebruikte vistechnieken](Data/visTechnieken.csv)
 
 ### visstand/visvangst
-* visbestand
-* visvangst bestand
-* percentage grote vis van de vangst
+* [visbestand totaal](Data/visBestand.csv)
+* [vangst data](Data/visVangst.csv)
+* [vangst bestand grote vis](Data/groteVis.csv)
 
 ### Trend in diersoorten noordzee
-* bruinvissen
-* Eikapsels haaien en roggen
-* waarnemingen haaien en roggen
-* vogelbestand per soort
-* visbestand per soort
-* zeehonden per soort
-* bodemfaunabestand per soort
-
-Deze 3 JSON-bestanden zullen worden samengevoegd en gemaakt door middel van de pandas library in python.
+* [Bruinvissen trend](Data/Bruinvissen.csv)
+* [Eikapsels trend](Data/Eikapsels.csv)
+* [haaien en roggen trend](Data/haaiRog.csv)
+* [vissoorten trend](Data/vissenTrend.csv)
+* [vogels trend](Data/vogels.csv)
+* [zoogdieren trend](Data/zoogdieren.csv)
+* [bodemfauna trend](Data/bodemFauna.csv)
 
 ## Opzet
 ![Diagram](/images/diagram.png)

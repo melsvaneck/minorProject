@@ -29,4 +29,4 @@ Eventueel wil ik ook nog een aantal extra charts maken op basis van de extra dat
 Bijvoorbeeld:
 * Aandeel van de grote vissen in vangst per jaar
 * info over de bodemfauna
-* invloed van groei in consumptie van duurzam gevangen vis
+* invloed van groei in consumptie van duurzaam gevangen vis
