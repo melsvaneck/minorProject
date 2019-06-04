@@ -28,15 +28,16 @@ Deze 3 JSON-bestanden zullen worden samengevoegd en gemaakt door middel van de p
 
 1. Vervolgens zal er een stacked bar chart te zien zijn, deze chart bevat invormatie over de inzet van visserij-technieken over door de jaren heen. Er kan op 2 dingen worden geklikt.
 
-    2. het jaartal
-    bij het klikken op het jaartal zullen er 2 dingen worden ge-update
+#### het jaartal
+bij het klikken op het jaartal zullen er 2 dingen worden ge-update
 
-      3. de stacked bar chart
+      1. de stacked bar chart
+      
       in de stacked barchart zullen er van het geselecteerde jaar de visvangsten van verschillende vissoorten te zien zijn, elke 'stack' bevat data over de totale visstand van de soort opgedeeld in hoeveelheid vangst, visserijsterfte en
 
-    2. de sunburst chart
+      1. de sunburst chart
 
-  1. het type vrisserij
+#### het type visserij
 1. Item 3b
 <!-- is de diagram goed? -->
 * a diagram with an overview of the technical components of your app (visualizations, scraper etc etc)
