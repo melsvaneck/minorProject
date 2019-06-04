@@ -4,16 +4,16 @@
 De data haal ik van de website https://www.clo.nl/, deze website beheerd data over het milieu in Nederland. De data word aangeleverd in verschillende Excel bestanden, deze zet ik om naar CSV bestanden, hierna zullen ze in 3 verschillende JSON-bestanden worden gefuseerd, één voor de visvangst en het bestand van deze gevangen vissen, de visserij-technieken en een voor de trend van diersoorten in de noordzee.
 
 ### Data Lijst
-[Bruinvissen trend](Data/Bruinvissen.csv)
-[Eikapsels trend](Data/Eikapsels.csv)
-[vangst bestand grote vis](Data/groteVis.csv)
-[haaien en roggen trend](Data/haaiRog.csv)
-[vissoorten trend](Data/vissenTrend.csv)
-[gebruikte vistechnieken](Data/visTechnieken.csv)
-[vogels trend](Data/vogels.csv)
-[zoogdieren trend](Data/zoogdieren.csv)
-[vangst data](Data/visVangst.csv)
-[bodemfauna trend](Data/bodemFauna.csv)
+* [Bruinvissen trend](Data/Bruinvissen.csv)
+* [Eikapsels trend](Data/Eikapsels.csv)
+* [vangst bestand grote vis](Data/groteVis.csv)
+* [haaien en roggen trend](Data/haaiRog.csv)
+* [vissoorten trend](Data/vissenTrend.csv)
+* [gebruikte vistechnieken](Data/visTechnieken.csv)
+* [vogels trend](Data/vogels.csv)
+* [zoogdieren trend](Data/zoogdieren.csv)
+* [vangst data](Data/visVangst.csv)
+* [bodemfauna trend](Data/bodemFauna.csv)
 
 ### visserij Technieken
  * gebruikte visserij-technieken
