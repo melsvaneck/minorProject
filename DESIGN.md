@@ -3,6 +3,9 @@
 ## Data sources
 De data haal ik van de website https://www.clo.nl/, deze website beheerd data over het milieu in Nederland. De data word aangeleverd in verschillende Excel bestanden, deze zet ik om naar CSV bestanden, hierna zullen ze in 3 verschillende JSON-bestanden worden gefuseerd, één voor de visvangst en het bestand van deze gevangen vissen, de visserij-technieken en een voor de trend van diersoorten in de noordzee.
 
+### Data Lijst
+[GitHub](Data/Bruinvissen.csv)
+
 ### visserij Technieken
  * gebruikte visserij-technieken
 
