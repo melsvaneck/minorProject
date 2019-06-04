@@ -1,6 +1,6 @@
 # minorProject
 final project of the data processing course from the minor programmeren
-# README NIET MEER UP-TO-date
+# LET OP!!!! README NIET MEER UP-TO-DATE!!!!
 De readme is net meer up-to-date omdat er tijdens de tech assist nieuwe inzichten zijn gegeven op mijn opdracht, meer hierover in het design document.
 
 de readme zal zo spoedig mogelijk worden ge-update.
