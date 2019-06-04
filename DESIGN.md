@@ -33,17 +33,22 @@ bij het klikken op het jaartal zullen er 2 dingen worden ge-update
 
 1. de stacked bar chart
 
-in de stacked barchart zullen er van het geselecteerde jaar de visvangsten van verschillende vissoorten te zien zijn, elke 'stack' bevat data over de totale visstand van de soort opgedeeld in hoeveelheid vangst, visserijsterfte en
+in de stacked barchart zullen er van het geselecteerde jaar de visvangsten van verschillende vissoorten te zien zijn, elke 'stack' bevat data over de totale visstand van de soort opgedeeld in hoeveelheid vangst, visserijsterfte en het percentage van de visvangst wat als grote vis beschouwd word.
 
-1. de sunburst chart
+  1. op de stacked barchart kan een vissoort geselecteerd worden, bij het selecteren zal er een stacked line chart worden geplot van elk jaartal met de visstand en visvangst per jaar.
+
+2. de sunburst chart
+
+in de sunburst chart zullen alle aantallen waarnemingen van verschillende diersoorten te zien zijn (bijv, vissen en bodemfauna). Van elk van deze soorten zullen de aantallen subsoorten worden laten zien.
+
+  1. op de sunburst chart kan een diersoort geselecteerd worden, bij het selecteren zal er een line chart worden geplot van elk jaartal met de met het aantal waarnemingen van elk jaartal.
+
 
 #### het type visserij
-1. Item 3b
-<!-- is de diagram goed? -->
-* a diagram with an overview of the technical components of your app (visualizations, scraper etc etc)
+Als er een type visserij geselecteerd word dan zal er van dit type visserij een korteuitleg volgen over wat deze techniek precies inhoud.
 
-* as well as descriptions of each of the components and what you need to implement these
-<!-- componenten beschrijven goed in diagram? -->
 
-* a list of APIs or D3 plugins that you will be using to provide functionality in your app
-<!-- bv een geojson plugin?  -->
+
+
+## Lijst van D3 componenten:
+volgt nog.
