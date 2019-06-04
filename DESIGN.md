@@ -31,11 +31,11 @@ Deze 3 JSON-bestanden zullen worden samengevoegd en gemaakt door middel van de p
 #### het jaartal
 bij het klikken op het jaartal zullen er 2 dingen worden ge-update
 
-      1. de stacked bar chart
-      
-      in de stacked barchart zullen er van het geselecteerde jaar de visvangsten van verschillende vissoorten te zien zijn, elke 'stack' bevat data over de totale visstand van de soort opgedeeld in hoeveelheid vangst, visserijsterfte en
+1. de stacked bar chart
 
-      1. de sunburst chart
+in de stacked barchart zullen er van het geselecteerde jaar de visvangsten van verschillende vissoorten te zien zijn, elke 'stack' bevat data over de totale visstand van de soort opgedeeld in hoeveelheid vangst, visserijsterfte en
+
+1. de sunburst chart
 
 #### het type visserij
 1. Item 3b
