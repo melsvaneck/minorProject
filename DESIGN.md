@@ -1,7 +1,5 @@
 # Design document
 
-* a list of data sources if you will get data from an external source, including information on how your are going to filter and transform the data for your project
-
 ## Data sources
 De data haal ik van de website https://www.clo.nl/, deze website beheerd data over het milieu in Nederland. De data word aangeleverd in verschillende Excel bestanden, deze zet ik om naar CSV bestanden, hierna zullen ze in 3 verschillende JSON-bestanden worden gefusseerd, één voor de visvangst en het bestand van deze gevangen vissen, de visserij-technieken en een voor de trend van diersoorten in de noordzee.
 
@@ -20,9 +18,10 @@ De data haal ik van de website https://www.clo.nl/, deze website beheerd data ov
 * vogelbestand per soort
 * visbestand per soorten
 
+Deze 3 JSON-bestanden zullen worden samengevoegd en gemaakt door middel van de pandas library in python.
 
-
-* a diagram with an overview of the technical components of your app (visualizations, scraper etc etc)
+## Opzet
+![GitHub Logo](/images/diagram.png)
 
 * as well as descriptions of each of the components and what you need to implement these
 
