@@ -35,7 +35,7 @@ De data haal ik van de website https://www.clo.nl/, deze website beheerd data ov
 Deze 3 JSON-bestanden zullen worden samengevoegd en gemaakt door middel van de pandas library in python.
 
 ## Opzet
-![Diagram](/images/diagram.jpg)
+![Diagram](/images/diagram.png)
 
 1. Als eerst zal alle data worden verwerkt en worden omgevormd naar een 3-tal JSON-files, dit zal gebeuren met behulp van python en de pandas library
 
