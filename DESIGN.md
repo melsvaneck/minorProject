@@ -28,21 +28,21 @@ Deze 3 JSON-bestanden zullen worden samengevoegd en gemaakt door middel van de p
 
 1. Vervolgens zal er een stacked bar chart te zien zijn, deze chart bevat invormatie over de inzet van visserij-technieken over door de jaren heen. Er kan op 2 dingen worden geklikt.
 
-#### het jaartal
+### het jaartal
 bij het klikken op het jaartal zullen er 2 dingen worden ge-update
 
-1. de stacked bar chart:
+##### de stacked bar chart:
 in de stacked barchart zullen er van het geselecteerde jaar de visvangsten van verschillende vissoorten te zien zijn, elke 'stack' bevat data over de totale visstand van de soort opgedeeld in hoeveelheid vangst, visserijsterfte en het percentage van de visvangst wat als grote vis beschouwd word.
 
   1. op de stacked barchart kan een vissoort geselecteerd worden, bij het selecteren zal er een stacked line chart worden geplot van elk jaartal met de visstand en visvangst per jaar.
 
-2. de sunburst chart:
+##### de sunburst chart:
 in de sunburst chart zullen alle aantallen waarnemingen van verschillende diersoorten te zien zijn (bijv, vissen en bodemfauna). Van elk van deze soorten zullen de aantallen subsoorten worden laten zien.
 
   1. op de sunburst chart kan een diersoort geselecteerd worden, bij het selecteren zal er een line chart worden geplot van elk jaartal met de met het aantal waarnemingen van elk jaartal.
 
 
-#### het type visserij
+### het type visserij
 Als er een type visserij geselecteerd word dan zal er van dit type visserij een korteuitleg volgen over wat deze techniek precies inhoud.
 
 
