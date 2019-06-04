@@ -21,7 +21,7 @@ De data haal ik van de website https://www.clo.nl/, deze website beheerd data ov
 Deze 3 JSON-bestanden zullen worden samengevoegd en gemaakt door middel van de pandas library in python.
 
 ## Opzet
-![Diagram](/images/diagram.jpg)
+![Diagram](/images/diagram.png)
 
 * a diagram with an overview of the technical components of your app (visualizations, scraper etc etc)
 
