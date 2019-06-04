@@ -1,10 +1,5 @@
-﻿Grote vissen in vangst;;
-;;
-;;
-;Jaarlijks aandeel;5-jarig gemiddelde
-;;
-;% vangstgewicht van vissen groter dan 25cm;
-1970;37,9457558;
+﻿Jaarlijks aandeel;% vangstgewicht van vissen groter dan 25cm;
+1970;37,9457558;5-jarig gemiddelde
 1971;31,00893879;32,05868834
 1972;35,24322966;28,39562782
 1973;19,43507231;27,39252739
@@ -48,11 +43,3 @@
 2011;4,747564454;6,972856293
 2012;6,134951189;
 2013;8,82592357;
-;;
-Bron:;IMARES.;
-;;
-;;
-Referentiecode:;www.clo.nl/nl124710;
-Indicatorcode:;1247_001g_clo;
-Indicatorversie:;10;
-;;

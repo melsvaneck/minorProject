@@ -1,7 +1,6 @@
 # minorProject
 final project of the data processing course from the minor programmeren
 
-
 ## Het project
 in het afgolopen jaar is er aan ongeveer 800 miljoen kilo vis gevangen door Nederland in de noordzee, deze visserij telt vele verschillende soorten technieken die van invloed zijn op de biodiversiteit van de noordzee. Ik wil graag in kaart brengen wat voor invloed de visserij op de vis aantallen en de biodiversiteit heeft.
 
