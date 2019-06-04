@@ -1,5 +1,9 @@
 # minorProject
 final project of the data processing course from the minor programmeren
+# README NIET MEER UP-TO-date
+De readme is net meer up-to-date omdat er tijdens de tech assist nieuwe inzichten zijn gegeven op mijn opdracht, meer hierover in het design document.
+
+de readme zal zo spoedig mogelijk worden ge-update.
 
 ## Het project
 in het afgolopen jaar is er aan ongeveer 800 miljoen kilo vis gevangen door Nederland in de noordzee, deze visserij telt vele verschillende soorten technieken die van invloed zijn op de biodiversiteit van de noordzee. Ik wil graag in kaart brengen wat voor invloed de visserij op de vis aantallen en de biodiversiteit heeft.
