@@ -31,8 +31,12 @@ def read_csv(input_csv):
 
     # read the csv file with pandas
     data = pd.read_csv(input_csv, delimiter=";")
+    print(data)
     # usecols = [ ]
-    data = data.pivot(index = 'jaar' )
+    data = data.transpose()
+
+    print(data)
+
     return data
 
 def make_csv(data):
