@@ -31,12 +31,10 @@ def read_csv(input_csv):
 
     # read the csv file with pandas
     data = pd.read_csv(input_csv, delimiter=";")
-    print(data)
-    # usecols = [ ]
-    data = data.transpose()
+
 
     print(data)
-
+    data.set_index('Jaar',inplace=True)
     return data
 
 def make_csv(data):
@@ -45,7 +43,7 @@ def make_csv(data):
 def make_json(data):
 
     # make a json file
-    data.to_json(r'Data.json', orient='records')
+    data.to_json(r'Data.json', orient='index')
 
 
 if __name__ == "__main__":
