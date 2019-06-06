@@ -28,7 +28,7 @@ De groep CSV-bestanden zal worden omgezet naar JSON-files door middel van de pan
 
 1. Als eerst zal alle data worden verwerkt en worden omgevormd naar een 3-tal JSON-files, dit zal gebeuren met behulp van python en de pandas library
 
-1. Vervolgens zal er een stacked bar chart te zien zijn, deze chart bevat invormatie over de inzet van visserij-technieken over door de jaren heen. Er kan op 2 dingen worden geklikt.
+1. Vervolgens zal er een stacked line chart te zien zijn, deze chart bevat invormatie over de inzet van visserij-technieken over door de jaren heen. Er kan op 2 dingen worden geklikt.
 
 ### het jaartal
 bij het klikken op het jaartal zullen er 2 dingen worden ge-update
@@ -38,10 +38,10 @@ in de stacked barchart zullen er van het geselecteerde jaar de visvangsten van v
 
   1. op de stacked barchart kan een vissoort geselecteerd worden, bij het selecteren zal er een stacked line chart worden geplot van elk jaartal met de visstand en visvangst per jaar.
 
-##### de sunburst chart:
-in de sunburst chart zullen alle aantallen waarnemingen van verschillende diersoorten te zien zijn (bijv, vissen en bodemfauna). Van elk van deze soorten zullen de aantallen subsoorten worden laten zien.
+##### de circle grouping chart:
+in de circle grouping chart zullen alle aantallen waarnemingen van verschillende diersoorten te zien zijn (bijv, vissen en bodemfauna). Van elk van deze soorten zullen de aantallen subsoorten worden laten zien.
 
-  1. op de sunburst chart kan een diersoort geselecteerd worden, bij het selecteren zal er een line chart worden geplot van elk jaartal met de met het aantal waarnemingen van elk jaartal.
+  1. op de circle grouping chart kan een diersoort geselecteerd worden, bij het selecteren zal er een line chart worden geplot van elk jaartal met de met het aantal waarnemingen van elk jaartal.
 
 
 ### het type visserij
