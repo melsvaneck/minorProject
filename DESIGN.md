@@ -41,6 +41,7 @@ in de stacked barchart zullen er van het geselecteerde jaar de visvangsten van v
 ##### de circle grouping chart:
 in de circle grouping chart zullen alle aantallen waarnemingen van verschillende diersoorten te zien zijn (bijv, vissen en bodemfauna). Van elk van deze soorten zullen de aantallen subsoorten worden laten zien.
 
+
   1. op de circle grouping chart kan een diersoort geselecteerd worden, bij het selecteren zal er een line chart worden geplot van elk jaartal met de met het aantal waarnemingen van elk jaartal.
 
 
