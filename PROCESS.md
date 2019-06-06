@@ -24,3 +24,8 @@ hierna begonnen aan de stacked bar chart van de vis vistechnieken:
 tweede standup gehad. volgende feedback gekregen
 
 1. Moet nog even goed nadenken over type charts die ik ga  gebruiken.
+
+voorstel opzet en design geupdate(zie desbetreffende pagina's),vervolgens stacked barchart omgezet naar een stacked line chart
+
+
+![bar](/images/stackedLine.PNG)

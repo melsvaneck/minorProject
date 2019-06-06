@@ -24,7 +24,7 @@ De groep CSV-bestanden zal worden omgezet naar JSON-files door middel van de pan
 * [bodemfauna trend](Data/bodemFauna.csv)
 
 ## Opzet
-![Diagram](/images/diagram.png)
+![Diagram](/images/diagram2.png)
 
 1. Als eerst zal alle data worden verwerkt en worden omgevormd naar een 3-tal JSON-files, dit zal gebeuren met behulp van python en de pandas library
 
