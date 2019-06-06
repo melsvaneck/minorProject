@@ -31,19 +31,54 @@ def read_csv(input_csv):
 
     # read the csv file with pandas
     data = pd.read_csv(input_csv, delimiter=";")
+    data = data.fillna(0)
 
+    data['Boomkor'].replace(regex=True,
+                            inplace=True,
+                            to_replace=r',',
+                            value=r'.')
+    data['Flyshoot'].replace(regex=True,
+                             inplace=True,
+                             to_replace=r',',
+                             value=r'.')
+
+    data['Garnalen'].replace(regex=True,
+                             inplace=True,
+                             to_replace=r',',
+                             value=r'.')
+    data['Puls'].replace(regex=True,
+                         inplace=True,
+                         to_replace=r',',
+                         value=r'.')
+    data['Sumwing'].replace(regex=True,
+                            inplace=True,
+                            to_replace=r',',
+                            value=r'.')
+    data['Diversen'].replace(regex=True,
+                             inplace=True,
+                             to_replace=r',',
+                             value=r'.')
+
+    data['Boomkor'] = pd.to_numeric(data['Boomkor'], errors='coerce')
+    data['Flyshoot'] = pd.to_numeric(data['Flyshoot'], errors='coerce')
+    data['Garnalen'] = pd.to_numeric(data['Garnalen'], errors='coerce')
+    data['Puls'] = pd.to_numeric(data['Puls'], errors='coerce')
+    data['Sumwing'] = pd.to_numeric(data['Sumwing'], errors='coerce')
+    data['Diversen'] = pd.to_numeric(data['Diversen'], errors='coerce')
 
     print(data)
-    data.set_index('Jaar',inplace=True)
+    # data.set_index('Jaar',inplace=True)
     return data
+
 
 def make_csv(data):
     data.to_csv(r'Honey_bees', index=False)
 
+
 def make_json(data):
 
     # make a json file
-    data.to_json(r'Data.json', orient='index')
+    data.to_json(r'Data.json', orient='records')
 
 
 if __name__ == "__main__":
