@@ -12,12 +12,15 @@ design document aangemaakt en nieuwe inzichten gekregen op mijn project. ook een
 # day 3 (5-6-2019)
 eerste standup gehad. volgende feedback gekregen
 
-1. Juiste indeling van de graphs.
-1. De vorm van de indeling van de sunburst. (hoe diep er wordt ingegaan op de soorten)
-1. Introductiepagina maken en aparte pagina voor de visualistaie.
+1. Letten op de juiste indeling van de graphs (belangrijkste eerst).
+1. De vorm van de indeling van de sunburst. (hoe diep er wordt ingegaan op de soorten).
+1. Introductiepagina maken en een aparte pagina voor de visualistaie.
 
-hierna begonnen aan de stacked bar chart van de vis vistechnieken
+hierna begonnen aan de stacked bar chart van de vis vistechnieken:
 
 ![bar](/images/stackedBar.PNG)
 
 # day 4 (5-6-2019)
+tweede standup gehad. volgende feedback gekregen
+
+1. Moet nog even goed nadenken over type charts die ik ga  gebruiken.
