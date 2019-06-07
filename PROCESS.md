@@ -20,7 +20,7 @@ hierna begonnen aan de stacked bar chart van de vis vistechnieken:
 
 ![bar](/images/stackedBar.PNG)
 
-# day 4 (5-6-2019)
+# day 4 (6-6-2019)
 tweede standup gehad. volgende feedback gekregen
 
 1. Moet nog even goed nadenken over type charts die ik ga  gebruiken.
@@ -28,4 +28,11 @@ tweede standup gehad. volgende feedback gekregen
 voorstel opzet en design geupdate(zie desbetreffende pagina's),vervolgens stacked barchart omgezet naar een stacked line chart
 
 
-![bar](/images/stackedLine.PNG)
+![line](/images/stackedLine.PNG)
+
+# day 5 (7-6-2019)
+advies gekregen over indeling. moet wat duidelijker laten zien welke waardes er bij welke chart horen.
+
+Circle packing chart gemaakt :)
+
+![cirle](/images/circlechart.PNG)
