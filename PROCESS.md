@@ -36,3 +36,21 @@ advies gekregen over indeling. moet wat duidelijker laten zien welke waardes er 
 Circle packing chart gemaakt :)
 
 ![cirle](/images/circlechart.PNG)
+
+# day 6 (11-6-2019)
+hele dag lopen werken met de circle packing chart. ervoor gekozen een buble chart te maken omdat er bepaalde dingen niet lukte.
+
+# day 7 (12-6-2019)
+de charts die ik tot nu toe heb, bij elkaar gezet
+
+![cirle](/images/3 charts.PNG)
+
+# day 8 (13-6-2019)
+niet kunnen werken aan de opdracht i.v.m. herkansing
+
+# day 9 (14-6-2019)
+niet kunnen werken aan de opdracht i.v.m. herkansing
+
+# day 9.5 (Inhaal dag) (16-6-2019)
+inhaal dagje gemaakt. updateable line-chart gemaakt van diersoorten. alle charts nu in principe af. nu een kwestie van alles net krijgen.
+![cirle](/images/4 charts.PNG)
