@@ -14,12 +14,30 @@ body {
   left: 25px;
 }
 
-.line {
+#stackline {
   position: absolute;
   top: 25px;
   left: 25px;
 
 }
+#normline {
+  position: absolute;
+  bottom: 25px;
+  left: 25px;
+}
+
+.x.grid line {
+  stroke: lightgrey;
+  stroke-opacity: 1;
+  shape-rendering: auto;
+}
+
+.y.grid line {
+  stroke: lightgrey;
+  stroke-opacity: 1;
+  shape-rendering: auto;
+}
+
 
 .test {
   position: absolute;
@@ -31,9 +49,7 @@ body {
 .label {
   size: 8px;
 }
-.grid {
-  color: grey;
-}
+
 div.tooltip {
   position: absolute;
   text-align: center;
@@ -69,4 +85,28 @@ div.tooltip {
   .focus circle {
   fill: none;
   stroke: steelblue;
+}
+
+.node {
+  cursor: pointer;
+}
+
+.node:hover {
+  stroke: white;
+  stroke-width: 1.5px;
+}
+
+.node--leaf {
+  fill: #BBBF95;
+}
+
+.node--leaf:hover {
+  stroke: #000;
+  stroke-width: 1.5px;
+}
+
+.label {
+  font: 11px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-anchor: middle;
+  text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
 }

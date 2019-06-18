@@ -14,36 +14,23 @@ function ready(error, bodem, vissentrend, vogel, zoogdier, data, grotevis, visbe
   var margin = {
     top: 20,
     right: 30,
-    bottom: 35,
+    bottom: 50,
     left: 30
   };
 
-  var width = 500 - margin.left - margin.right,
-    height = 350 - margin.top - margin.bottom;
+  var stackedLine = d3.select("#stackline")
+  var normLine = d3.select("#normline")
 
-  // document.getElementById("bar").onclick = makeBar
-  document.getElementById("line").onclick = makeLine
-  //
+  makeStackLine()
 
-  makeLine()
-  makeBar()
-
+  // makeBar()
 
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  function makeLine() {
+  function makeStackLine() {
 
-    // append the svg object to the body of the page
-    var stackedLine = d3.select("#my_dataviz")
-      .append("svg")
-      .attr("class", "line")
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
-      .append("g")
-      .attr("transform",
-        "translate(" + margin.left + "," + margin.top + ")");
+    var width = +stackedLine.attr("width");
+    var height = +stackedLine.attr("height");
 
-
-    // List of groups = header of the csv files
     var object = data[0]
 
     var keys = []
@@ -70,35 +57,7 @@ function ready(error, bodem, vissentrend, vogel, zoogdier, data, grotevis, visbe
       .domain(d3.extent(data, function(d) {
         return d.Jaar;
       }))
-      .range([0, width]);
-
-
-    var xAxis = d3.axisBottom()
-      .scale(x)
-      .tickFormat(d3.format("d"))
-      .ticks(20);
-
-
-    stackedLine.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0, " + (height) + ")")
-      .call(xAxis)
-
-
-    // Add X axis label:
-    stackedLine.append("text")
-      .attr("text-anchor", "end")
-      .attr("x", width)
-      .attr("y", height + 30)
-      .text("Time (year)");
-
-    // Add Y axis label:
-    stackedLine.append("text")
-      .attr("text-anchor", "end")
-      .attr("x", 0)
-      .attr("y", -20)
-      .text("# of baby born")
-      .attr("text-anchor", "start")
+      .range([margin.left, width - margin.right]);
 
     // Add Y axis
     var y = d3.scaleLinear()
@@ -107,39 +66,67 @@ function ready(error, bodem, vissentrend, vogel, zoogdier, data, grotevis, visbe
           return Math.ceil(d[0] / 10) * 10;
         });
       })])
-      .range([height, margin.left]);
+      .range([height - margin.bottom, margin.top]);
+
+    var xAxis = d3.axisBottom()
+      .scale(x)
+      .tickFormat(d3.format("d"))
+      .ticks(20);
+
+    var yAxis = d3.axisLeft()
+      .scale(y);
+
     stackedLine.append("g")
-      .call(d3.axisLeft(y).ticks(5))
+      .attr("class", "y axis")
+      .attr("transform", "translate( " + margin.left + ", " + 0 + ")")
+      .call(yAxis);
+
+
+    stackedLine.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(" + 0 + ", " + (height - margin.bottom) + ")")
+      .call(xAxis);
+
+    // Add X axis label:
+    stackedLine.append("text")
+      .attr("text-anchor", "end")
+      .attr("x", width - 100)
+      .attr("y", height - 20)
+      .text("Time (year)");
+
+    // Add Y axis label:
+    stackedLine.append("text")
+      .attr("text-anchor", "end")
+      .attr("x", 0)
+      .attr("y", -20)
+      .attr("text-anchor", "start")
+
 
     function make_x_gridlines() {
       return d3.axisBottom(x)
-        .ticks(20)
+        .ticks(15)
     }
 
     // gridlines in y axis function
     function make_y_gridlines() {
       return d3.axisLeft(y)
-        .ticks(5)
+        .ticks(8)
     }
 
     stackedLine.append("g")
       .attr("class", "x grid")
-      .attr("transform", "translate(0," + height + ")")
+      .attr("transform", "translate( " + 0 + ", " + (height - margin.bottom) + ")")
       .call(make_x_gridlines()
-        .tickSize(-height + margin.top)
+        .tickSize(-height + margin.top + margin.bottom)
         .tickFormat("")
-      )
-
-    stackedLine.selectAll(".x.grid .tick")
-      .on("click", function(d) {
-        pickYear(d);
-      });
+      ).style("color", "white")
 
     // add the Y gridlines
     stackedLine.append("g")
-      .attr("class", "grid")
+      .attr("class", "y grid")
+      .attr("transform", "translate( " + margin.left + ", " + 0 + ")")
       .call(make_y_gridlines()
-        .tickSize(-width)
+        .tickSize(margin.right + margin.left - width)
         .tickFormat("")
       )
 
@@ -208,19 +195,26 @@ function ready(error, bodem, vissentrend, vogel, zoogdier, data, grotevis, visbe
 
     // And when it is not hovered anymore
     var noHighlight = function(d) {
-      d3.selectAll(".myArea").style("opacity", .7)
+      d3.selectAll(".myArea").style("opacity", .8)
     }
 
     // Add one dot in the legend for each name.
     var size = 10
+    stackedLine.append("rect")
+      .attr("x", (width - 105 - margin.left))
+      .attr("y", margin.top)
+      .attr("width", 105)
+      .attr("height", 115)
+      .style("fill", "white")
+      .style("opacity", "0.9")
 
     stackedLine.selectAll("myrect")
       .data(keys)
       .enter()
       .append("rect")
-      .attr("x", (width * 0.8))
+      .attr("x", (width * 0.760))
       .attr("y", function(d, i) {
-        return 10 + i * (size + 5)
+        return 30 + i * (size + 5)
       }) // 100 is where the first dot appears. 25 is the distance between dots
       .attr("width", size)
       .attr("height", size)
@@ -235,13 +229,14 @@ function ready(error, bodem, vissentrend, vogel, zoogdier, data, grotevis, visbe
       .data(keys)
       .enter()
       .append("text")
-      .attr("x", (width * 0.8) + size * 1.2)
+      .attr("x", (width * 0.760) + size * 1.2)
       .attr("y", function(d, i) {
-        return 10 + i * (size + 5) + (size / 2)
+        return 30 + i * (size + 5) + (size / 2)
       }) // 100 is where the first dot appears. 25 is the distance between dots
       .style("fill", function(d) {
         return color(d)
       })
+      .style("opacity", "1.5")
       .text(function(d) {
         return d
       })
@@ -251,9 +246,268 @@ function ready(error, bodem, vissentrend, vogel, zoogdier, data, grotevis, visbe
       .on("mouseleave", noHighlight)
   };
 
-
-
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  var width = +normLine.attr("width");
+  var height = +normLine.attr("height");
+
+  normLine.append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+  var dataset = makeLineData(["Noordse stormvogel", "vogels"])
+
+  // 5. X scale will use the index of our data
+  var xScale = d3.scaleLinear()
+    .domain([d3.min(dataset, function(d) {
+      return d.year;
+    }), d3.max(dataset, function(d) {
+      return d.year;
+    })]) // input
+    .range([margin.left, width - margin.right]); // output
+
+  // 6. Y scale will use the randomly generate number
+  var yScale = d3.scaleLinear()
+    .domain([0, d3.max(dataset, function(d) {
+      return Math.ceil(d.y / 100) * 100;
+    })]).range([height - margin.bottom, margin.top]); // output
+
+  min = d3.min(dataset, function(d) {
+    return d.year;
+  })
+
+  var min = parseInt(min, 10);
+
+  // 7. d3's line generator
+  var line = d3.line()
+    .x(function(d, i) {
+      return xScale(i + min);
+    }) // set the x values for the line generator
+    .y(function(d) {
+      return yScale(d.y);
+    }) // set the y values for the line generator
+    .curve(d3.curveMonotoneX) // apply smoothing to the line
+
+
+  // 3. Call the x axis in a group tag
+  normLine.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + (height - margin.bottom) + ")")
+    .call(d3.axisBottom(xScale).tickFormat(d3.format("d"))
+      .ticks(20)).selectAll("text")
+    .attr("y", 10)
+    .attr("x", 5)
+    .attr("dy", ".35em")
+    .attr("transform", "rotate(45)")
+    .style("text-anchor", "start"); // Create an axis component with d3.axisBottom
+
+  // 4. Call the y axis in a group tag
+  normLine.append("g")
+    .attr("class", "y axis")
+    .call(d3.axisLeft(yScale))
+    .attr("transform", "translate(" + margin.left + "," + 0 + ")"); // Create an axis component with d3.axisLeft
+
+  function make_x_gridlines() {
+    return d3.axisBottom(xScale)
+      .ticks((d3.max(dataset, function(d) {
+        return d.year;
+      })) - (d3.min(dataset, function(d) {
+        return d.year;
+      })))
+  }
+
+  // gridlines in y axis function
+  function make_y_gridlines() {
+    return d3.axisLeft(yScale)
+  }
+
+  normLine.append("g")
+    .attr("class", "x grid")
+    .attr("transform", "translate(0," + (height - margin.bottom) + ")")
+    .call(make_x_gridlines()
+      .tickSize(-height + margin.left + margin.right)
+      .tickFormat("")
+    )
+
+  // add the Y gridlines
+  normLine.append("g")
+    .attr("class", "y grid")
+    .attr("transform", "translate(" + margin.left + "," + 0 + ")")
+    .call(make_y_gridlines()
+      .tickSize(-width + margin.top + margin.bottom)
+      .tickFormat("")
+    )
+
+  // 9. Append the path, bind the data, and call the line generator
+  normLine.append("path")
+    .datum(dataset) // 10. Binds data to the line
+    .attr("class", "lijn") // Assign a class for styling
+    .attr("d", line); // 11. Calls the line generator
+
+
+  // 12. Appends a circle for each datapoint
+  normLine.selectAll(".dot")
+    .data(dataset)
+    .enter().append("circle") // Uses the enter().append() method
+    .attr("class", "dot") // Assign a class for styling
+    .attr("cx", function(d, i) {
+      return xScale(i + min)
+    })
+    .attr("cy", function(d) {
+      return yScale(d.y)
+    })
+    .attr("r", 5)
+    .on("mouseover", function(a, b, c) {
+      console.log(a)
+      this.attr('class', 'focus')
+    })
+    .on("mouseout", function() {})
+
+
+
+
+  function updateLine(data) {
+
+    var dataset = makeLineData(data)
+
+
+    yScale.domain([0, d3.max(dataset, function(d) {
+      return Math.ceil(d.y / 10) * 10;
+    })])
+
+    xScale.domain([d3.min(dataset, function(d) {
+      return d.year;
+    }), d3.max(dataset, function(d) {
+      return d.year;
+    })]) // input
+
+    min = d3.min(dataset, function(d) {
+      return parseInt(d.year, 10);;
+    })
+
+    // 7. d3's line generator
+    line.x(function(d, i) {
+        return xScale(i + min);
+      }) // set the x values for the line generator
+      .y(function(d) {
+        return yScale(d.y);
+      }) // set the y values for the line generator
+      .curve(d3.curveMonotoneX) // apply smoothing to the line
+
+    // 4. Call the y axis in a group tag
+    normLine.selectAll(".y.axis")
+      .transition()
+      .duration(1000)
+      .call(d3.axisLeft(yScale)); // Create an axis component with d3.axisLeft
+
+      // 4. Call the y axis in a group tag
+      normLine.selectAll(".x.axis")
+        .transition()
+        .duration(1000)
+        .call(d3.axisBottom(xScale).tickFormat(d3.format("d"))
+          .ticks(20)).selectAll("text")
+        .attr("y", 10)
+        .attr("x", 5)
+        .attr("dy", ".35em")
+        .attr("transform", "rotate(45)")
+        .style("text-anchor", "start");
+
+        normLine.selectAll(".x.axis")
+          .data(dataset).exit().remove();
+         // Create an axis component with d3.axisLeft
+
+    // add the Y gridlines
+    normLine.selectAll(".y.grid")
+      .call(make_y_gridlines())
+
+      // add the Y gridlines
+      normLine.selectAll(".x.grid")
+        .call(make_x_gridlines())
+
+
+    // 9. Append the path, bind the data, and call the line generator
+    normLine.select(".lijn")
+      .datum(dataset)
+      .transition()
+      .duration(1000) // 10. Binds data to the line
+      .attr("d", line); // 11. Calls the line generator
+
+    //normLine.selectAll(".dot").remove();
+
+    normLine.selectAll(".dot")
+      .data(dataset)
+      .enter().append("circle")
+      .transition()
+      .duration(1000) // Uses the enter().append() method
+      .attr("class", "dot") // Assign a class for styling
+      .attr("cx", function(d, i) {
+        return xScale(i + min)
+      })
+      .attr("cy", function(d) {
+        return yScale(d.y)
+      })
+      .attr("r", 5)
+
+    normLine.selectAll(".dot")
+      .data(dataset)
+      .transition()
+      .duration(1000) // Uses the enter().append() method
+      .attr("class", "dot") // Assign a class for styling
+      .attr("cx", function(d, i) {
+        return xScale(i + min)
+      })
+      .attr("cy", function(d) {
+        return yScale(d.y)
+      })
+      .attr("r", 5)
+
+    normLine.selectAll(".dot")
+      .data(dataset).exit().remove();
+  }
+
+
+  function makeLineData(data) {
+    console.log(data);
+    lineData = []
+
+    switch (data[1]) {
+      case "bodemfauna":
+        Object.keys(bodem).forEach(year => {
+          lineData.push({
+            year: year,
+            y: bodem[year][data[0]]
+          });
+        });
+        break;
+      case "vogels":
+        Object.keys(vogel).forEach(year => {
+          lineData.push({
+            year: year,
+            y: vogel[year][data[0]]
+          });
+        });
+        break;
+      case "zoogdieren":
+        Object.keys(zoogdier).forEach(year => {
+          lineData.push({
+            year: year,
+            y: zoogdier[year][data[0]]
+          });
+        });
+        break;
+      case "vissen":
+        Object.keys(vissentrend).forEach(year => {
+          lineData.push({
+            year: year,
+            y: vissentrend[year][data[0]]
+          });
+        });
+        break;
+      default:
+        null
+    }
+
+    return lineData;
+  }
 
 
 
@@ -558,104 +812,82 @@ function ready(error, bodem, vissentrend, vogel, zoogdier, data, grotevis, visbe
 
   var dieren = pickYear('2000')
 
-  var div = d3.select("body").append("div")
-    .attr("class", "tooltip")
-    .style("opacity", 0);
-
-  var diameter = 400,
-    format = d3.format(",d"),
-    color = d3.scaleOrdinal(d3.schemeSet2);
-
-  var bubble = d3.pack()
-    .size([diameter, diameter])
-    .padding(1.5);
-
-  var svg = d3.select("#bubble"),
+  var circPack = d3.select("#bubble"),
     margin = 20,
-    diameter = +svg.attr("width"),
-    g = svg.append("g").attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
+    diameter = +circPack.attr("width"),
+    g = circPack.append("g").attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
 
-  var root = d3.hierarchy(classes(dieren))
+  var color = d3.scale.ordinal()
+    .domain([0, 1, 2])
+    .range(["#012172", "0486DB", "#05ACD3"])
+
+  var pack = d3.pack()
+    .size([diameter - margin, diameter - margin])
+    .padding(2);
+
+  root = d3.hierarchy(dieren)
     .sum(function(d) {
-      return d.value;
-    }).sort(function(a, b) {
+      return d.size;
+    })
+    .sort(function(a, b) {
       return b.value - a.value;
     });
 
+  var focus = root,
+    nodes = pack(root).descendants(),
+    view;
 
-  bubble(root);
-
-  var node = svg.selectAll(".node")
-    .data(root.children)
-    .enter().append("g")
-    .attr("class", "node")
-    .attr("transform", function(d) {
-      return "translate(" + d.x + "," + d.y + ")";
-    });
-
-  node.append("title")
-    .text(function(d) {
-      return d.data.className + ": " + format(d.value);
-    });
-
-  node.append("circle")
-    .transition()
-    .duration(1000)
-    .attr("r", function(d) {
-      return d.r;
+  var circle = g.selectAll("circle")
+    .data(nodes)
+    .enter().append("circle")
+    .attr("class", function(d) {
+      return d.parent ? d.children ? "node" : "node node--leaf" : "node node--root";
     })
     .style("fill", function(d) {
-      return color(d.data.packageName);
+      return d.children ? color(d.depth) : null;
     })
-
-  node.selectAll("circle")
-    .on("mouseover", function(d) {
-      div.transition()
-        .duration(200)
-        .style("opacity", .9);
-      div.html(d.data.className)
-        .style("left", (d3.event.pageX) + "px")
-        .style("top", (d3.event.pageY - 40) + "px");
-    }).on("mouseout", function(d) {
-      div.transition()
-        .duration(500)
-        .style("opacity", 0);
-    })
-    .on('click', function(d) {
-      console.log(d.data.className)
-      console.log(d.data.packageName)
-      updateLine([d.data.className, d.data.packageName])
+    .on("click", function(d) {
+      if (d.depth == 2) {
+        console.log(updateLine([d.data.name, d.parent.data.name]));
+      } else if (focus !== d) zoom(d), d3.event.stopPropagation();
     });
 
 
-  // Returns a flattened hierarchy containing all leaf nodes under the root.
-  function classes(root) {
 
-    var classes = [];
-
-    function recurse(name, node) {
-      if (node.children) node.children.forEach(function(child) {
-        recurse(node.name, child);
-      });
-      else classes.push({
-        packageName: name,
-        className: node.name,
-        value: node.size
-      });
-    }
-
-    recurse(null, root);
-    return {
-      children: classes
-    };
-  }
-  d3.select(self.frameElement).style("height", diameter + "px");
+  var text = g.selectAll("text")
+    .data(nodes)
+    .enter().append("text")
+    .style("font", "10px sans-serif")
+    .attr("pointer-events", "none")
+    .attr("text-anchor", "middle")
+    .attr("class", "label")
+    .style("fill-opacity", function(d) {
+      return d.parent === root ? 1 : 0;
+    })
+    .style("display", function(d) {
+      return d.parent === root ? "inline" : "none";
+    }).text(function(d) {
+      return d.data.name;
+    });
 
 
+
+
+  var node = g.selectAll("circle,text");
+
+  circPack.style("background", "white")
+    .on("click", function() {
+      zoom(root);
+    });
+
+
+  zoomTo([root.x, root.y, root.r * 2 + margin]);
 
   function updateCircle(year) {
 
+    var margin = 20
     var dieren = pickYear(year)
+
     if (dieren == "error fauna") {
       console.log(dieren)
       return 1;
@@ -670,300 +902,91 @@ function ready(error, bodem, vissentrend, vogel, zoogdier, data, grotevis, visbe
       return 1;
     }
 
+    var margin = 20
 
-    var root = d3.hierarchy(classes(dieren))
+    root = d3.hierarchy(dieren)
       .sum(function(d) {
-        return d.value;
+        return d.size;
       })
       .sort(function(a, b) {
-        return a.packageName;
+        return b.value - a.value;
       });
 
-    bubble(root);
+    var focus = root,
+      nodes = pack(root).descendants(),
+      view;
 
-    // update the dots
-    svg.selectAll(".node").data(root.children)
-      .attr("transform", function(d) {
-        return "translate(" + d.x + "," + d.y + ")";
+    circle
+      .data(nodes)
+      .attr("class", function(d) {
+        return d.parent ? d.children ? "node" : "node node--leaf" : "node node--root";
+      })
+      .style("fill", function(d) {
+        return d.children ? color(d.depth) : null;
       })
 
-    svg.selectAll("circle")
-      .data(root.children)
-      .transition()
-      .duration(1500)
-      .attr("r", function(d) {
-        return d.r;
-      }).style("fill", function(d) {
-        return color(d.data.packageName);
+
+    text
+      .data(nodes)
+      .style("fill-opacity", function(d) {
+        return d.parent === root ? 1 : 0;
+      })
+      .style("display", function(d) {
+        return d.parent === root ? "inline" : "none";
+      })
+      .text(function(d) {
+        return d.data.name;
       });
 
 
-    // Returns a flattened hierarchy containing all leaf nodes under the root.
-    function classes(root) {
-      var classes = [];
+    node = g.selectAll("circle,text");
 
-      function recurse(name, node) {
-        if (node.children) node.children.forEach(function(child) {
-          recurse(node.name, child);
-        });
-        else classes.push({
-          packageName: name,
-          className: node.name,
-          value: node.size
-        });
-      }
+    // zoomTo([root.x, root.y, root.r * 2 + margin]);
+    zoom(root)
 
-      recurse(null, root);
-      return {
-        children: classes
-      };
-    }
-
-    d3.select(self.frameElement).style("height", diameter + "px");
   }
+
+  function zoom(d) {
+    var focus0 = focus;
+    focus = d;
+
+    var transition = d3.transition()
+      .duration(d3.event.altKey ? 7500 : 750)
+      .tween("zoom", function(d) {
+        var i = d3.interpolateZoom(view, [focus.x, focus.y, focus.r * 2]);
+        return function(t) {
+          zoomTo(i(t));
+        };
+      });
+
+
+    transition.selectAll("text").filter('.label')
+      .filter(function(d) {
+        return d.parent === focus || this.style.display === "inline";
+      })
+      .style("fill-opacity", function(d) {
+        return d.parent === focus ? 1 : 0;
+      })
+      .on("start", function(d) {
+        if (d.parent === focus) this.style.display = "inline";
+      })
+      .on("end", function(d) {
+        if (d.parent !== focus) this.style.display = "none";
+      });
+  }
+
+  function zoomTo(v) {
+    var k = diameter / v[2];
+    view = v;
+    node.attr("transform", function(d) {
+      return "translate(" + (d.x - v[0]) * k + "," + (d.y - v[1]) * k + ")";
+    });
+    circle.attr("r", function(d) {
+      return d.r * k;
+    });
+  }
+
 
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-  function makeLineData(data) {
-    console.log(data);
-    lineData = []
-
-    Object.keys(vogel).forEach(year => {
-      lineData.push({
-        year: year,
-        y: vogel[year][data[0]]
-      });
-    });
-    return lineData;
-  }
-
-
-  // 2. Use the margin convention practice
-  var margin = {
-      top: 25,
-      right: 25,
-      bottom: 35,
-      left: 40
-    },
-    width = 600 - margin.left - margin.right // Use the window's width
-    ,
-    height = 300 - margin.top - margin.bottom; // Use the window's height
-
-  // The number of datapoints
-  var n = 26;
-
-  // 5. X scale will use the index of our data
-  var xScale = d3.scaleLinear()
-    .domain([1990, 2016]) // input
-    .range([0, width]); // output
-
-
-  console.log(vissentrend);
-
-  var dataset = makeLineData(["Noordse stormvogel", "vogels"])
-  console.log(dataset);
-
-  // 6. Y scale will use the randomly generate number
-  var yScale = d3.scaleLinear()
-    .domain([0, d3.max(dataset, function(d) {
-      return d.y;
-    })]).range([height, 0]); // output
-
-  min = d3.min(dataset, function(d) {
-    return d.year;
-  })
-
-  var min = parseInt(min, 10);
-
-  console.log(min);
-  // 7. d3's line generator
-  var line = d3.line()
-    .x(function(d, i) {
-      return xScale(i + min);
-    }) // set the x values for the line generator
-    .y(function(d) {
-      return yScale(d.y);
-    }) // set the y values for the line generator
-    .curve(d3.curveMonotoneX) // apply smoothing to the line
-
-  // 8. An array of objects of length N. Each object has key -> value pair, the key being "y" and the value is a random number
-  // var dataset = d3.range(n).map(function(d,i) { return {"y": d3.randomUniform(1)(), "x" : i + 1990} })
-  // console.log(dataset);
-
-
-  // 1. Add the SVG to the page and employ #2
-  var linesvg = d3.select("body")
-    .append("svg")
-    .attr('class', "test")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-  // 3. Call the x axis in a group tag
-  linesvg.append("g")
-    .attr("class", "x axis")
-    .attr("transform", "translate(0," + height + ")")
-    .call(d3.axisBottom(xScale).tickFormat(d3.format("d"))
-      .ticks(20)).selectAll("text")
-    .attr("y", 10)
-    .attr("x", 5)
-    .attr("dy", ".35em")
-    .attr("transform", "rotate(45)")
-    .style("text-anchor", "start"); // Create an axis component with d3.axisBottom
-
-  // 4. Call the y axis in a group tag
-  linesvg.append("g")
-    .attr("class", "y axis")
-    .call(d3.axisLeft(yScale)); // Create an axis component with d3.axisLeft
-
-  function make_x_gridlines() {
-    return d3.axisBottom(xScale)
-      .ticks(20)
-  }
-
-  // gridlines in y axis function
-  function make_y_gridlines() {
-    return d3.axisLeft(yScale)
-      .ticks(10)
-  }
-
-  linesvg.append("g")
-    .attr("class", "x grid")
-    .attr("transform", "translate(0," + height + ")")
-    .call(make_x_gridlines()
-      .tickSize(-height)
-      .tickFormat("")
-    )
-    
-  // add the Y gridlines
-  linesvg.append("g")
-    .attr("class", "y grid")
-    .call(make_y_gridlines()
-      .tickSize(-width)
-      .tickFormat("")
-    )
-
-  // 9. Append the path, bind the data, and call the line generator
-  linesvg.append("path")
-    .datum(dataset) // 10. Binds data to the line
-    .attr("class", "lijn") // Assign a class for styling
-    .attr("d", line); // 11. Calls the line generator
-
-
-  // 12. Appends a circle for each datapoint
-  linesvg.selectAll(".dot")
-    .data(dataset)
-    .enter().append("circle") // Uses the enter().append() method
-    .attr("class", "dot") // Assign a class for styling
-    .attr("cx", function(d, i) {
-      return xScale(i + min)
-    })
-    .attr("cy", function(d) {
-      return yScale(d.y)
-    })
-    .attr("r", 5)
-    .on("mouseover", function(a, b, c) {
-      console.log(a)
-      this.attr('class', 'focus')
-    })
-    .on("mouseout", function() {})
-  //     .on("mousemove", mousemove);
-  //
-  // var focus = svg.append("g")
-  //     .attr("class", "focus")
-  //     .style("display", "none");
-  //
-  // focus.append("circle")
-  //     .attr("r", 4.5);
-  //
-  // focus.append("text")
-  //     .attr("x", 9)
-  //     .attr("dy", ".35em");
-  //
-  // svg.append("rect")
-  //     .attr("class", "overlay")
-  //     .attr("width", width)
-  //     .attr("height", height)
-  //     .on("mouseover", function() { focus.style("display", null); })
-  //     .on("mouseout", function() { focus.style("display", "none"); })
-  //     .on("mousemove", mousemove);
-  //
-  // function mousemove() {
-  //   var x0 = x.invert(d3.mouse(this)[0]),
-  //       i = bisectDate(data, x0, 1),
-  //       d0 = data[i - 1],
-  //       d1 = data[i],
-  //       d = x0 - d0.date > d1.date - x0 ? d1 : d0;
-  //   focus.attr("transform", "translate(" + x(d.date) + "," + y(d.close) + ")");
-  //   focus.select("text").text(d);}
-
-
-
-  function updateLine(data) {
-
-    var dataset = makeLineData(data)
-
-
-    yScale.domain([0, d3.max(dataset, function(d) {
-      return Math.ceil(d.y / 10) * 10;
-    })])
-
-    console.log(d3.max(dataset, function(d) {
-      return Math.ceil(d.y / 10) * 10;
-    }));
-
-    min = d3.min(dataset, function(d) {
-      return parseInt(d.year, 10);;
-    })
-
-
-    // 7. d3's line generator
-    line
-      .x(function(d, i) {
-        return xScale(i + min);
-      }) // set the x values for the line generator
-      .y(function(d) {
-        return yScale(d.y);
-      }) // set the y values for the line generator
-      .curve(d3.curveMonotoneX) // apply smoothing to the line
-
-
-    // 4. Call the y axis in a group tag
-    linesvg.selectAll(".y.axis")
-      .transition()
-      .duration(1000)
-      .call(d3.axisLeft(yScale)); // Create an axis component with d3.axisLeft
-
-    // add the Y gridlines
-    linesvg.selectAll(".y.grid")
-      .call(make_y_gridlines()
-        .tickSize(-width)
-        .tickFormat("")
-      )
-
-
-    // 9. Append the path, bind the data, and call the line generator
-    linesvg.selectAll("path")
-      .datum(dataset)
-      .transition()
-      .duration(1000) // 10. Binds data to the line
-      .attr("d", line); // 11. Calls the line generator
-
-    linesvg.selectAll("circle")
-      .data(dataset)
-      .transition()
-      .duration(1000)
-      .attr("cx", function(d, i) {
-        return xScale(i + min)
-      })
-      .attr("cy", function(d) {
-        return yScale(d.y)
-      })
-      .attr("r", 5)
-
-
-  }
 
 };

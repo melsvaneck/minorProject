@@ -43,7 +43,7 @@ hele dag lopen werken met de circle packing chart. ervoor gekozen een buble char
 # day 7 (12-6-2019)
 de charts die ik tot nu toe heb, bij elkaar gezet
 
-![circle](/images/charts3.PNG)
+![charts3](/images/charts3.PNG)
 
 # day 8 (13-6-2019)
 niet kunnen werken aan de opdracht i.v.m. herkansing
@@ -53,4 +53,9 @@ niet kunnen werken aan de opdracht i.v.m. herkansing
 
 # day 9.5 (Inhaal dag) (16-6-2019)
 inhaal dagje gemaakt. updateable line-chart gemaakt van diersoorten. alle charts nu in principe af. nu een kwestie van alles net krijgen.
-![circle](/images/charts4.PNG)
+![charts4](/images/charts4.PNG)
+
+# day 10  (17-6-2019)
+Toch de circle packing chart werkend gekregen! hierna alles functioneel gekregen en gaan orderen. ervoorgekozen om geen stacked bar chart meer te gebruiken voor gevangen vis wegens te grote verschillen. hiervoor in de plaats komt er een andere chart (waaarschijnlijk sunburst)
+
+![ordered](/images/ordered.PNG)
