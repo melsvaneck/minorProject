@@ -1,4 +1,4 @@
-  function makeStackLine(data) {
+  function makeStackLine(bodem, vissentrend, vogel, zoogdier,data) {
 
     var margin = {
       top: 20,
@@ -119,7 +119,7 @@
 
     stackedLine.selectAll(".x.axis .tick")
       .on("click", function(d) {
-        updateCircle(d);
+        updateCircle(bodem, vissentrend, vogel, zoogdier, d);
       });
 
 

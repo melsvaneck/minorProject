@@ -1,12 +1,6 @@
 body {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    background-color:	#F0F8FF;
-}
-
-.bar {
-  position: absolute;
-  bottom: 25px;
-  left: 25px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: #F0F8FF;
 }
 
 .x.grid line {
@@ -21,19 +15,15 @@ body {
   shape-rendering: auto;
 }
 
-
 .big-box {
-    height: 725px;
-    line-height: 30px;
-}
-.mini-box {
-    height: 362.5px;
-    line-height: 30px;
-}
-.label {
-  size: 8px;
+  height: 725px;
+  line-height: 30px;
 }
 
+.mini-box {
+  height: 362.5px;
+  line-height: 30px;
+}
 
 div.tooltip {
   position: absolute;
@@ -51,9 +41,9 @@ div.tooltip {
 }
 
 .lijn {
-    fill: none;
-    stroke: #ffab00;
-    stroke-width: 3;
+  fill: none;
+  stroke: #ffab00;
+  stroke-width: 3;
 }
 
 .overlay {
@@ -63,11 +53,11 @@ div.tooltip {
 
 /* Style the dots by assigning a fill and stroke */
 .dot {
-    fill: #ffab00;
-    stroke: #fff;
+  fill: #ffab00;
+  stroke: #fff;
 }
 
-  .focus circle {
+.focus circle {
   fill: none;
   stroke: steelblue;
 }
@@ -95,3 +85,8 @@ div.tooltip {
   text-anchor: middle;
   text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
 }
+.line {
+     fill: none;
+     stroke: steelblue;
+     stroke-width: 1.5px;
+   }
