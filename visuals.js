@@ -14,22 +14,22 @@ function ready(error, bodem, vissentrend, vogel, zoogdier, data, grotevis, visbe
   var margin = {
     top: 20,
     right: 30,
-    bottom: 50,
-    left: 30
+    bottom: 75,
+    left: 60
   };
-
-  var stackedLine = d3.select("#stackline")
-  var normLine = d3.select("#normline")
 
   makeStackLine()
 
-  // makeBar()
-
-  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   function makeStackLine() {
+    var width = document.getElementById("stackline").clientWidth;
+    var height = document.getElementById("stackline").clientHeight;
 
-    var width = +stackedLine.attr("width");
-    var height = +stackedLine.attr("height");
+    var stackedLine = d3.select("#stackline")
+      .append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform", "translate(0,0)");
 
     var object = data[0]
 
@@ -91,15 +91,16 @@ function ready(error, bodem, vissentrend, vogel, zoogdier, data, grotevis, visbe
     stackedLine.append("text")
       .attr("text-anchor", "end")
       .attr("x", width - 100)
-      .attr("y", height - 20)
-      .text("Time (year)");
+      .attr("y", height - 40)
+      .text("Tijd (jaar)");
 
     // Add Y axis label:
     stackedLine.append("text")
       .attr("text-anchor", "end")
-      .attr("x", 0)
-      .attr("y", -20)
-      .attr("text-anchor", "start")
+      .attr("x", -50)
+      .attr("y", 20)
+      .text("Miljoen pk-dagen")
+      .attr("transform", "rotate(-90)");
 
 
     function make_x_gridlines() {
@@ -175,8 +176,7 @@ function ready(error, bodem, vissentrend, vogel, zoogdier, data, grotevis, visbe
         return color(d.key);
       })
       .style("opacity", .7)
-      .attr("d", area)
-
+      .attr("d", area);
 
     var idleTimeout
 
@@ -201,11 +201,11 @@ function ready(error, bodem, vissentrend, vogel, zoogdier, data, grotevis, visbe
     // Add one dot in the legend for each name.
     var size = 10
     stackedLine.append("rect")
-      .attr("x", (width - 105 - margin.left))
+      .attr("x", (width - 105))
       .attr("y", margin.top)
       .attr("width", 105)
       .attr("height", 115)
-      .style("fill", "white")
+      .style("fill", "	#F0F8FF")
       .style("opacity", "0.9")
 
     stackedLine.selectAll("myrect")
@@ -248,11 +248,15 @@ function ready(error, bodem, vissentrend, vogel, zoogdier, data, grotevis, visbe
 
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-  var width = +normLine.attr("width");
-  var height = +normLine.attr("height");
+  var width = document.getElementById("normline").clientWidth;
+  var height = document.getElementById("normline").clientHeight;
 
-  normLine.append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+  var normLine = d3.select("#normline")
+    .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", "translate(0,0)");
 
   var dataset = makeLineData(["Noordse stormvogel", "vogels"])
 
@@ -287,7 +291,6 @@ function ready(error, bodem, vissentrend, vogel, zoogdier, data, grotevis, visbe
     }) // set the y values for the line generator
     .curve(d3.curveMonotoneX) // apply smoothing to the line
 
-
   // 3. Call the x axis in a group tag
   normLine.append("g")
     .attr("class", "x axis")
@@ -297,14 +300,14 @@ function ready(error, bodem, vissentrend, vogel, zoogdier, data, grotevis, visbe
     .attr("y", 10)
     .attr("x", 5)
     .attr("dy", ".35em")
-    .attr("transform", "rotate(45)")
+    .attr("transform", "rotate(30)")
     .style("text-anchor", "start"); // Create an axis component with d3.axisBottom
 
   // 4. Call the y axis in a group tag
   normLine.append("g")
     .attr("class", "y axis")
     .call(d3.axisLeft(yScale))
-    .attr("transform", "translate(" + margin.left + "," + 0 + ")"); // Create an axis component with d3.axisLeft
+    .attr("transform", "translate(" + margin.left + ", 0 )"); // Create an axis component with d3.axisLeft
 
   function make_x_gridlines() {
     return d3.axisBottom(xScale)
@@ -324,7 +327,7 @@ function ready(error, bodem, vissentrend, vogel, zoogdier, data, grotevis, visbe
     .attr("class", "x grid")
     .attr("transform", "translate(0," + (height - margin.bottom) + ")")
     .call(make_x_gridlines()
-      .tickSize(-height + margin.left + margin.right)
+      .tickSize(-height + margin.top + margin.bottom)
       .tickFormat("")
     )
 
@@ -333,7 +336,7 @@ function ready(error, bodem, vissentrend, vogel, zoogdier, data, grotevis, visbe
     .attr("class", "y grid")
     .attr("transform", "translate(" + margin.left + "," + 0 + ")")
     .call(make_y_gridlines()
-      .tickSize(-width + margin.top + margin.bottom)
+      .tickSize(-width + margin.right + margin.left)
       .tickFormat("")
     )
 
@@ -343,6 +346,20 @@ function ready(error, bodem, vissentrend, vogel, zoogdier, data, grotevis, visbe
     .attr("class", "lijn") // Assign a class for styling
     .attr("d", line); // 11. Calls the line generator
 
+  // Add X axis label:
+  normLine.append("text")
+    .attr("text-anchor", "end")
+    .attr("x", width - 100)
+    .attr("y", height - 35)
+    .text("Tijd (jaar)");
+
+  // Add Y axis label:
+  normLine.append("text")
+    .attr("text-anchor", "end")
+    .attr("x", -50)
+    .attr("y", 20)
+    .text("Trend (Waarnemingen)")
+    .attr("transform", "rotate(-90)");
 
   // 12. Appends a circle for each datapoint
   normLine.selectAll(".dot")
@@ -358,20 +375,22 @@ function ready(error, bodem, vissentrend, vogel, zoogdier, data, grotevis, visbe
     .attr("r", 5)
     .on("mouseover", function(a, b, c) {
       console.log(a)
-      this.attr('class', 'focus')
     })
     .on("mouseout", function() {})
-
-
-
 
   function updateLine(data) {
 
     var dataset = makeLineData(data)
 
+    var margin = {
+      top: 20,
+      right: 30,
+      bottom: 75,
+      left: 50
+    };
 
     yScale.domain([0, d3.max(dataset, function(d) {
-      return Math.ceil(d.y / 10) * 10;
+      return Math.ceil(d.y / 100) * 100;
     })])
 
     xScale.domain([d3.min(dataset, function(d) {
@@ -393,45 +412,53 @@ function ready(error, bodem, vissentrend, vogel, zoogdier, data, grotevis, visbe
       }) // set the y values for the line generator
       .curve(d3.curveMonotoneX) // apply smoothing to the line
 
+
     // 4. Call the y axis in a group tag
     normLine.selectAll(".y.axis")
       .transition()
       .duration(1000)
       .call(d3.axisLeft(yScale)); // Create an axis component with d3.axisLeft
 
-      // 4. Call the y axis in a group tag
-      normLine.selectAll(".x.axis")
-        .transition()
-        .duration(1000)
-        .call(d3.axisBottom(xScale).tickFormat(d3.format("d"))
-          .ticks(20)).selectAll("text")
-        .attr("y", 10)
-        .attr("x", 5)
-        .attr("dy", ".35em")
-        .attr("transform", "rotate(45)")
-        .style("text-anchor", "start");
+    // 4. Call the y axis in a group tag
+    normLine.select(".x.axis")
+      .transition()
+      .duration(1000)
+      .call(d3.axisBottom(xScale).tickFormat(d3.format("d"))
+        .ticks(20))
 
-        normLine.selectAll(".x.axis")
-          .data(dataset).exit().remove();
-         // Create an axis component with d3.axisLeft
+    normLine.select(".x.axis")
+      .selectAll("text")
+      .attr("y", 10)
+      .attr("x", 5)
+      .attr("dy", ".35em")
+      .attr("transform", "rotate(30)")
+      .style("text-anchor", "start");
+
 
     // add the Y gridlines
     normLine.selectAll(".y.grid")
-      .call(make_y_gridlines())
+      .transition()
+      .duration(500)
+      .call(make_y_gridlines()
+        .tickSize(-width + margin.right + margin.left)
+        .tickFormat("")
+      )
 
-      // add the Y gridlines
-      normLine.selectAll(".x.grid")
-        .call(make_x_gridlines())
-
+    // add the Y gridlines
+    normLine.selectAll(".x.grid")
+      .transition()
+      .duration(500)
+      .call(make_x_gridlines()
+        .tickSize(-height + margin.top + margin.bottom)
+        .tickFormat("")
+      )
 
     // 9. Append the path, bind the data, and call the line generator
-    normLine.select(".lijn")
+    normLine.selectAll(".lijn")
       .datum(dataset)
       .transition()
       .duration(1000) // 10. Binds data to the line
       .attr("d", line); // 11. Calls the line generator
-
-    //normLine.selectAll(".dot").remove();
 
     normLine.selectAll(".dot")
       .data(dataset)
@@ -509,209 +536,6 @@ function ready(error, bodem, vissentrend, vogel, zoogdier, data, grotevis, visbe
     return lineData;
   }
 
-
-
-  function makeBar() { // Setup margins,width and height
-
-    vangsten = pickBarYear("2005")
-
-    // Transpose the data into layers
-    var dataset = d3.layout.stack()(["bestand", "Aangeland", "Overboord gezet"].map(function(type) {
-      return vangsten.map(function(d) {
-        return {
-          x: d.soort,
-          y: +d[type]
-        };
-      });
-    }));
-
-    // make svg for the stacked bar chart
-    var stackedBar = d3.select("body")
-      .append("svg")
-      .attr('class', "bar")
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
-      .append("g")
-      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-
-    // Create yScale
-    var yScale = d3.scaleLinear()
-      .domain([0, d3.max(dataset, function(d) {
-        return d3.max(d, function(d) {
-          return d.y0 + d.y;
-        });
-      })])
-      .range([height, margin.left]);
-
-    // Create xScale
-    var xScale = d3.scaleBand()
-      .domain(dataset[0].map(function(d) {
-        return d.x;
-      }))
-      .paddingInner(0.05)
-      .paddingOuter(0.1)
-      .range([margin.left, width]);
-
-    // make the legend and the array for the names
-    var object = vangsten[0]
-
-    var names = ["bestand", "Aangeland", "Overboord gezet"]
-
-
-    var colors = d3.scaleOrdinal()
-      .domain(names)
-      .range(d3.schemeSet2);
-
-
-    // make the y axis
-    var yAxis = d3.axisLeft()
-      .scale(yScale);
-
-    // make the x axis
-    var xAxis = d3.axisBottom()
-      .scale(xScale)
-
-    // append the y axis
-    stackedBar.append("g")
-      .attr("class", "y axis")
-      .attr("transform", "translate(" + margin.left + ",0)")
-      .call(yAxis);
-
-    // append  the x axis
-    stackedBar.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
-      .call(xAxis);
-
-    // Create groups for each series, rects for each segment
-    var groups = stackedBar.selectAll("g.cost")
-      .data(dataset)
-      .enter().append("g")
-      .attr("class", "cost")
-      .attr("fill", function(d, i) {
-        return colors(i);
-      });
-
-    // make the rectangles for the bars
-    var rect = groups.selectAll("rect")
-      .data(function(d) {
-        return d;
-      })
-      .attr("class", function(d) {})
-      .enter()
-      .append("rect")
-      .attr("x", function(d) {
-        return xScale(d.x);
-      })
-      .attr("y", function(d) {
-        return yScale(d.y0 + d.y);
-      })
-      .attr("height", function(d) {
-        return yScale(d.y0) - yScale(d.y0 + d.y);
-      })
-      .attr("width", xScale.bandwidth())
-      .on("mouseover", function() {
-        tooltip.style("display", null);
-      });
-
-    // Draw legend
-    var legend = stackedBar.selectAll(".legend")
-      .data(names)
-      .enter().append("g")
-      .attr("class", "legend")
-      .attr("transform", function(d, i) {
-        return "translate(30," + i * 19 + ")";
-      });
-
-    legend.append("rect")
-      .attr("x", width - 160)
-      .attr("width", 18)
-      .attr("height", 18)
-      .attr("fill", function(d, i) {
-        return colors(i);
-      })
-
-    legend.append("text")
-      .attr("x", width - 140)
-      .attr("y", 9)
-      .attr("dy", ".35em")
-      .style("fill", function(d, i) {
-        return colors(i)
-      })
-      .text(function(d) {
-        return d;
-      })
-
-    // Prep the tooltip bits, initial display is hidden
-    var tooltip = stackedBar.append("g")
-      .attr("class", "tooltip")
-      .style("display", "none");
-
-    tooltip.append("rect")
-      .attr("width", 30)
-      .attr("height", 20)
-      .attr("fill", "white")
-      .style("opacity", 0.5);
-
-    tooltip.append("text")
-      .attr("x", 15)
-      .attr("dy", "1.2em")
-      .style("text-anchor", "middle")
-      .attr("font-size", "12px")
-      .attr("font-weight", "bold");
-  };
-
-
-  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%//
-  function pickBarYear(year) {
-
-    visbestand = visbestand[year]
-    visvangst = visvangst[year]
-
-    console.log(visbestand);
-    console.log(visvangst);
-
-    Object.keys(visvangst).forEach(key => {
-      visvangst[key] = parseInt(visvangst[key], 10);
-    })
-
-    Object.keys(visbestand).forEach(key => {
-      visbestand[key] = parseInt(visbestand[key], 10);
-    })
-
-    var vangsten = [{
-        "soort": "Haring",
-        "bestand": visbestand.Haring,
-        "Aangeland": visvangst["Aangelande Haring "],
-        "Overboord gezet": visvangst["Overboord gezette Haring "]
-      },
-      {
-        "soort": "Kabeljauw",
-        "bestand": visbestand.Kabeljauw,
-        "Aangeland": visvangst["Aangelande Kabeljauw "],
-        "Overboord gezet": visvangst["Overboord gezette Kabeljauw"]
-      },
-      {
-        "soort": "Schol",
-        "bestand": visbestand.Schol,
-        "Aangeland": visvangst["Aangelande schol"],
-        "Overboord gezet": visvangst["Overboord gezette Schol "]
-      },
-      {
-        "soort": "Tong",
-        "bestand": visbestand.Tong,
-        "Aangeland": visvangst["Aangelande tong"],
-        "Overboord gezet": visvangst["Overboord gezette tong"]
-      }
-    ]
-
-    console.log(vangsten);
-    return vangsten;
-
-
-  }
-
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
   function pickYear(year) {
@@ -732,9 +556,7 @@ function ready(error, bodem, vissentrend, vogel, zoogdier, data, grotevis, visbe
           "size": bodemfauna[key]
         })
       })
-    } catch (err) {
-      return "error fauna"
-    }
+    } catch (err) {}
 
     var zd = []
 
@@ -749,9 +571,7 @@ function ready(error, bodem, vissentrend, vogel, zoogdier, data, grotevis, visbe
           "size": zoogdieren[key]
         })
       })
-    } catch (err) {
-      return "error zoogdieren"
-    }
+    } catch (err) {}
 
     var vg = []
 
@@ -765,9 +585,7 @@ function ready(error, bodem, vissentrend, vogel, zoogdier, data, grotevis, visbe
           "size": vogels[key]
         })
       })
-    } catch (err) {
-      return "error vogels"
-    }
+    } catch (err) {}
 
 
     var vs = []
@@ -781,41 +599,42 @@ function ready(error, bodem, vissentrend, vogel, zoogdier, data, grotevis, visbe
           "size": vissen[key]
         })
       })
+    } catch (err) {}
 
-    } catch (err) {
-      return "error vissen"
-    }
-
-    var all = vs.concat(bf, vg, zd)
 
     var dieren = {
       "name": "diersoorten",
-      // 'children' : all
       'children': [{
         'name': "vissen",
         "children": vs
-      }, {
-        'name': "bodemfauna",
-        "children": bf
-      }, {
+      },{
         'name': "zoogdieren",
         "children": zd
-      }, {
+      },{
+        'name': "bodemfauna",
+        "children": bf
+      },{
         'name': "vogels",
         "children": vg
       }]
     }
+
     return dieren;
   }
 
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% //
 
-  var dieren = pickYear('2000')
+  var dieren = pickYear('2016');
 
-  var circPack = d3.select("#bubble"),
-    margin = 20,
-    diameter = +circPack.attr("width"),
-    g = circPack.append("g").attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
+  var margin = 20;
+  var diameter = document.getElementById("bubble").clientHeight;
+
+  var circPack = d3.select("#bubble")
+    .append("svg")
+    .attr("width", diameter)
+    .attr("height", diameter)
+
+  g = circPack.append("g").attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
 
   var color = d3.scale.ordinal()
     .domain([0, 1, 2])
@@ -824,6 +643,10 @@ function ready(error, bodem, vissentrend, vogel, zoogdier, data, grotevis, visbe
   var pack = d3.pack()
     .size([diameter - margin, diameter - margin])
     .padding(2);
+
+var div = d3.select("body").append("div")
+  .attr("class", "tooltip")
+  .style("opacity", 0);
 
   root = d3.hierarchy(dieren)
     .sum(function(d) {
@@ -847,11 +670,26 @@ function ready(error, bodem, vissentrend, vogel, zoogdier, data, grotevis, visbe
       return d.children ? color(d.depth) : null;
     })
     .on("click", function(d) {
+      console.log(d);
       if (d.depth == 2) {
-        console.log(updateLine([d.data.name, d.parent.data.name]));
-      } else if (focus !== d) zoom(d), d3.event.stopPropagation();
+        console.log(d.r, updateLine([d.data.name, d.parent.data.name]));
+      }
+      // else if (focus !== d) zoom(d), d3.event.stopPropagation();
+    }).on("mouseover", function(d) {
+      if (d.r < 18) {
+        div.transition()
+          .duration(200)
+          .style("opacity", .9);
+        div.html(d.data.name)
+          .style("left", (d3.event.pageX) + "px")
+          .style("top", (d3.event.pageY - 40) + "px");
+      }
+    })
+    .on("mouseout", function(d) {
+      div.transition()
+        .duration(500)
+        .style("opacity", 0);
     });
-
 
 
   var text = g.selectAll("text")
@@ -867,17 +705,20 @@ function ready(error, bodem, vissentrend, vogel, zoogdier, data, grotevis, visbe
     .style("display", function(d) {
       return d.parent === root ? "inline" : "none";
     }).text(function(d) {
-      return d.data.name;
+      try {
+        if (d.parent.data.name != "bodemfauna") {
+          return d.data.name;
+        } else if (d.r >= 18) {
+          return d.data.name;
+        }
+      } catch (e) {}
     });
-
-
-
 
   var node = g.selectAll("circle,text");
 
-  circPack.style("background", "white")
+  circPack.style("background", "	#F0F8FF")
     .on("click", function() {
-      zoom(root);
+      // zoom(root);
     });
 
 
@@ -886,23 +727,8 @@ function ready(error, bodem, vissentrend, vogel, zoogdier, data, grotevis, visbe
   function updateCircle(year) {
 
     var margin = 20
+
     var dieren = pickYear(year)
-
-    if (dieren == "error fauna") {
-      console.log(dieren)
-      return 1;
-    } else if (dieren == "error zoogdieren") {
-      console.log(dieren)
-      return 1;
-    } else if (dieren == "error vogels") {
-      console.log(dieren)
-      return 1;
-    } else if (dieren == "error vissen") {
-      console.log(dieren)
-      return 1;
-    }
-
-    var margin = 20
 
     root = d3.hierarchy(dieren)
       .sum(function(d) {
@@ -916,34 +742,40 @@ function ready(error, bodem, vissentrend, vogel, zoogdier, data, grotevis, visbe
       nodes = pack(root).descendants(),
       view;
 
-    circle
-      .data(nodes)
-      .attr("class", function(d) {
-        return d.parent ? d.children ? "node" : "node node--leaf" : "node node--root";
-      })
-      .style("fill", function(d) {
-        return d.children ? color(d.depth) : null;
-      })
+    var circle = g.selectAll("circle")
+    .data(nodes)
+    .attr("class", function(d) {
+      return d.parent ? d.children ? "node" : "node node--leaf" : "node node--root";
+    })
+    .style("fill", function(d) {
+      return d.children ? color(d.depth) : null;
+    })
 
 
-    text
-      .data(nodes)
-      .style("fill-opacity", function(d) {
-        return d.parent === root ? 1 : 0;
-      })
-      .style("display", function(d) {
-        return d.parent === root ? "inline" : "none";
-      })
-      .text(function(d) {
-        return d.data.name;
-      });
+  var text = g.selectAll("text")
+    .data(nodes)
+    .style("font", "10px sans-serif")
+    .attr("pointer-events", "none")
+    .attr("text-anchor", "middle")
+    .attr("class", "label")
+    .style("fill-opacity", function(d) {
+      return d.parent === root ? 1 : 0;
+    })
+    .style("display", function(d) {
+      return d.parent === root ? "inline" : "none";
+    }).text(function(d) {
+      try {
+        if (d.parent.data.name != "bodemfauna") {
+          return d.data.name;
+        } else if (d.r >= 18) {
+          return d.data.name;
+        }
+      } catch (e) {}
+    });
 
+  var node = g.selectAll("circle,text");
 
-    node = g.selectAll("circle,text");
-
-    // zoomTo([root.x, root.y, root.r * 2 + margin]);
-    zoom(root)
-
+zoomTo([root.x, root.y, root.r * 2 + margin]);
   }
 
   function zoom(d) {
@@ -959,7 +791,6 @@ function ready(error, bodem, vissentrend, vogel, zoogdier, data, grotevis, visbe
         };
       });
 
-
     transition.selectAll("text").filter('.label')
       .filter(function(d) {
         return d.parent === focus || this.style.display === "inline";
@@ -973,20 +804,228 @@ function ready(error, bodem, vissentrend, vogel, zoogdier, data, grotevis, visbe
       .on("end", function(d) {
         if (d.parent !== focus) this.style.display = "none";
       });
+
   }
 
   function zoomTo(v) {
     var k = diameter / v[2];
     view = v;
+
     node.attr("transform", function(d) {
       return "translate(" + (d.x - v[0]) * k + "," + (d.y - v[1]) * k + ")";
     });
+    text.attr("transform", function(d) {
+      return "translate(" + (d.x - v[0]) * k + "," + (d.y - v[1]) * k + ")";
+    })
     circle.attr("r", function(d) {
       return d.r * k;
     });
+
+
   }
 
 
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 };
+
+function makeBar() { // Setup margins,width and height
+
+  vangsten = pickBarYear("2005")
+
+  // Transpose the data into layers
+  var dataset = d3.layout.stack()(["bestand", "Aangeland", "Overboord gezet"].map(function(type) {
+    return vangsten.map(function(d) {
+      return {
+        x: d.soort,
+        y: +d[type]
+      };
+    });
+  }));
+
+  // make svg for the stacked bar chart
+  var stackedBar = d3.select("body")
+    .append("svg")
+    .attr('class', "bar")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+  // Create yScale
+  var yScale = d3.scaleLinear()
+    .domain([0, d3.max(dataset, function(d) {
+      return d3.max(d, function(d) {
+        return d.y0 + d.y;
+      });
+    })])
+    .range([height, margin.left]);
+
+  // Create xScale
+  var xScale = d3.scaleBand()
+    .domain(dataset[0].map(function(d) {
+      return d.x;
+    }))
+    .paddingInner(0.05)
+    .paddingOuter(0.1)
+    .range([margin.left, width]);
+
+  // make the legend and the array for the names
+  var object = vangsten[0]
+
+  var names = ["bestand", "Aangeland", "Overboord gezet"]
+
+
+  var colors = d3.scaleOrdinal()
+    .domain(names)
+    .range(d3.schemeSet2);
+
+
+  // make the y axis
+  var yAxis = d3.axisLeft()
+    .scale(yScale);
+
+  // make the x axis
+  var xAxis = d3.axisBottom()
+    .scale(xScale)
+
+  // append the y axis
+  stackedBar.append("g")
+    .attr("class", "y axis")
+    .attr("transform", "translate(" + margin.left + ",0)")
+    .call(yAxis);
+
+  // append  the x axis
+  stackedBar.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + height + ")")
+    .call(xAxis);
+
+  // Create groups for each series, rects for each segment
+  var groups = stackedBar.selectAll("g.cost")
+    .data(dataset)
+    .enter().append("g")
+    .attr("class", "cost")
+    .attr("fill", function(d, i) {
+      return colors(i);
+    });
+
+  // make the rectangles for the bars
+  var rect = groups.selectAll("rect")
+    .data(function(d) {
+      return d;
+    })
+    .attr("class", function(d) {})
+    .enter()
+    .append("rect")
+    .attr("x", function(d) {
+      return xScale(d.x);
+    })
+    .attr("y", function(d) {
+      return yScale(d.y0 + d.y);
+    })
+    .attr("height", function(d) {
+      return yScale(d.y0) - yScale(d.y0 + d.y);
+    })
+    .attr("width", xScale.bandwidth())
+    .on("mouseover", function() {
+      tooltip.style("display", null);
+    });
+
+  // Draw legend
+  var legend = stackedBar.selectAll(".legend")
+    .data(names)
+    .enter().append("g")
+    .attr("class", "legend")
+    .attr("transform", function(d, i) {
+      return "translate(30," + i * 19 + ")";
+    });
+
+  legend.append("rect")
+    .attr("x", width - 160)
+    .attr("width", 18)
+    .attr("height", 18)
+    .attr("fill", function(d, i) {
+      return colors(i);
+    })
+
+  legend.append("text")
+    .attr("x", width - 140)
+    .attr("y", 9)
+    .attr("dy", ".35em")
+    .style("fill", function(d, i) {
+      return colors(i)
+    })
+    .text(function(d) {
+      return d;
+    })
+
+  // Prep the tooltip bits, initial display is hidden
+  var tooltip = stackedBar.append("g")
+    .attr("class", "tooltip")
+    .style("display", "none");
+
+  tooltip.append("rect")
+    .attr("width", 30)
+    .attr("height", 20)
+    .attr("fill", "white")
+    .style("opacity", 0.5);
+
+  tooltip.append("text")
+    .attr("x", 15)
+    .attr("dy", "1.2em")
+    .style("text-anchor", "middle")
+    .attr("font-size", "12px")
+    .attr("font-weight", "bold");
+};
+
+
+// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%//
+function pickBarYear(year) {
+
+  visbestand = visbestand[year]
+  visvangst = visvangst[year]
+
+  console.log(visbestand);
+  console.log(visvangst);
+
+  Object.keys(visvangst).forEach(key => {
+    visvangst[key] = parseInt(visvangst[key], 10);
+  })
+
+  Object.keys(visbestand).forEach(key => {
+    visbestand[key] = parseInt(visbestand[key], 10);
+  })
+
+  var vangsten = [{
+      "soort": "Haring",
+      "bestand": visbestand.Haring,
+      "Aangeland": visvangst["Aangelande Haring "],
+      "Overboord gezet": visvangst["Overboord gezette Haring "]
+    },
+    {
+      "soort": "Kabeljauw",
+      "bestand": visbestand.Kabeljauw,
+      "Aangeland": visvangst["Aangelande Kabeljauw "],
+      "Overboord gezet": visvangst["Overboord gezette Kabeljauw"]
+    },
+    {
+      "soort": "Schol",
+      "bestand": visbestand.Schol,
+      "Aangeland": visvangst["Aangelande schol"],
+      "Overboord gezet": visvangst["Overboord gezette Schol "]
+    },
+    {
+      "soort": "Tong",
+      "bestand": visbestand.Tong,
+      "Aangeland": visvangst["Aangelande tong"],
+      "Overboord gezet": visvangst["Overboord gezette tong"]
+    }
+  ]
+
+  console.log(vangsten);
+  return vangsten;
+
+
+}

@@ -1,26 +1,9 @@
 body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
-#bubble {
-  position: absolute;
-  top: 25px;
-  right: 25px;
+    background-color:	#F0F8FF;
 }
 
 .bar {
-  position: absolute;
-  bottom: 25px;
-  left: 25px;
-}
-
-#stackline {
-  position: absolute;
-  top: 25px;
-  left: 25px;
-
-}
-#normline {
   position: absolute;
   bottom: 25px;
   left: 25px;
@@ -39,16 +22,18 @@ body {
 }
 
 
-.test {
-  position: absolute;
-  bottom: 25px;
-  right: 25px;
-
+.big-box {
+    height: 725px;
+    line-height: 30px;
 }
-
+.mini-box {
+    height: 362.5px;
+    line-height: 30px;
+}
 .label {
   size: 8px;
 }
+
 
 div.tooltip {
   position: absolute;
@@ -56,13 +41,13 @@ div.tooltip {
   width: 120px;
   height: 50px;
   padding: 2px;
-  font: 12px sans-serif;
+  font: 11px sans-serif;
   background: lightsteelblue;
   border: 0px;
   border-radius: 8px;
   pointer-events: none;
   font-weight: bold;
-  font-size: 14px;
+  word-break: break-word;
 }
 
 .lijn {

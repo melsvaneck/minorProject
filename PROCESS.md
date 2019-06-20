@@ -58,4 +58,4 @@ inhaal dagje gemaakt. updateable line-chart gemaakt van diersoorten. alle charts
 # day 10  (17-6-2019)
 Toch de circle packing chart werkend gekregen! hierna alles functioneel gekregen en gaan orderen. ervoorgekozen om geen stacked bar chart meer te gebruiken voor gevangen vis wegens te grote verschillen. hiervoor in de plaats komt er een andere chart (waaarschijnlijk sunburst)
 
-![ordered](/images/ordered.PNG)
+![ordered](/images/ordereds.PNG)
