@@ -76,12 +76,12 @@ hele code aangepast door functies overal voor te maken en verschillende programm
 # day 14  (20-6-2019)
 data gevonden over eerdere jaren visserijtechnieken
 <!-- http://edepot.wur.nl/284011 -->
-[mouse](/images/extradata.PNG)!
+![mouse](/images/extradata.PNG)
 
 hiermee mijn stacked line chart bijgewerkt.
 ook alle namen bij de plots gezet en een slider toegevoegt die de circle packing chart update.
-![mouse](/images/beta.PNG)!
+![mouse](/images/beta.PNG)
 
 
 ook nog extra infopagina's gemaakt.
-[mouse](/images/text.PNG)!
+![mouse](/images/text.PNG)
