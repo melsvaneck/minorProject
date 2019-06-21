@@ -42,8 +42,9 @@ div.tooltip {
 
 .lijn {
   fill: none;
-  stroke: #ffab00;
+  stroke: #048f99;
   stroke-width: 3;
+  font
 }
 
 .overlay {
@@ -54,7 +55,9 @@ div.tooltip {
 /* Style the dots by assigning a fill and stroke */
 .dot {
   fill: #ffab00;
-  stroke: #fff;
+  stroke: #000;
+  stroke-width: 1;
+  width: 3;
 }
 
 .focus circle {
@@ -81,7 +84,7 @@ div.tooltip {
 }
 
 .label {
-  font: 11px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font: "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-anchor: middle;
   text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
 }
@@ -89,4 +92,9 @@ div.tooltip {
      fill: none;
      stroke: steelblue;
      stroke-width: 1.5px;
+   }
+
+   .slider {
+
+     height: 100px;
    }

@@ -17,9 +17,9 @@ function makenormLine(bodem, vissentrend, vogel, zoogdier) {
   normLine = svg.append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+  var data = ["Noordse stormvogel", "vogels"];
 
-
-  var dataset = makeLineData(["Noordse stormvogel", "vogels"], bodem, vissentrend, vogel, zoogdier)
+  var dataset = makeLineData(data, bodem, vissentrend, vogel, zoogdier)
 
   // 5. X scale will use the index of our data
   var xScale = d3.scaleLinear()
@@ -63,6 +63,7 @@ function makenormLine(bodem, vissentrend, vogel, zoogdier) {
     .attr("dy", ".35em")
     .attr("transform", "rotate(30)")
     .style("text-anchor", "start"); // Create an axis component with d3.axisBottom
+
 
   // 4. Call the y axis in a group tag
   normLine.append("g")
@@ -116,14 +117,20 @@ function makenormLine(bodem, vissentrend, vogel, zoogdier) {
     .attr("y", height + 60)
     .text("Tijd (jaar)");
 
-  // Add Y axis label:
   svg
     .append("text")
     .attr("text-anchor", "end")
-    .attr("x", -50)
-    .attr("y", 20)
-    .text("Trend (Waarnemingen)")
-    .attr("transform", "rotate(-90)");
+    .attr("x", 200)
+    .attr("y", 15)
+    .text("trend per diersoort");
+
+  svg
+    .append("text")
+    .attr("class", "soort")
+    .attr("text-anchor", "end")
+    .attr("x", width + 50)
+    .attr("y", 15)
+    .text(data[0]);
 
   // 12. Appends a circle for each datapoint
   normLine.selectAll(".dot")
@@ -244,6 +251,7 @@ function makenormLine(bodem, vissentrend, vogel, zoogdier) {
           return "translate(" + mouse[0] + "," + pos.y + ")";
         });
     });
+
 }
 
 function updateLine(data, bodem, vissentrend, vogel, zoogdier) {
@@ -349,6 +357,12 @@ function updateLine(data, bodem, vissentrend, vogel, zoogdier) {
       .tickSize(-height)
       .tickFormat("")
     )
+
+  d3.select(".soort")
+    .attr("text-anchor", "end")
+    .attr("x", width + 50)
+    .attr("y", 15)
+    .text(data[0]);
 
   // 9. Append the path, bind the data, and call the line generator
   normLine.selectAll(".lijn")

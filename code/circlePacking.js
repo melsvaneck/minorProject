@@ -1,7 +1,7 @@
 function makeCirclePacking(bodem, vissentrend, vogel, zoogdier) {
 
-  var dieren = pickYear(bodem, vissentrend, vogel, zoogdier, '2000');
-
+  var dieren = pickYear(bodem, vissentrend, vogel, zoogdier, '2016');
+  year = "2016"
   var margin = 20;
   var diameter = document.getElementById("bubble").clientHeight;
 
@@ -46,30 +46,37 @@ function makeCirclePacking(bodem, vissentrend, vogel, zoogdier) {
       return d.children ? color(d.depth) : null;
     })
     .on("click", function(d) {
-      console.log(d);
       if (d.depth == 2) {
-        console.log(d.r, updateLine([d.data.name, d.parent.data.name], bodem, vissentrend, vogel, zoogdier));
+        updateLine([d.data.name, d.parent.data.name], bodem, vissentrend, vogel, zoogdier);
       } else if (focus !== d) zoom(d), d3.event.stopPropagation();
     }).on("mouseover", function(d) {
-      if (d.r < 18) {
+      if (d.depth == 2) {
         div.transition()
           .duration(200)
           .style("opacity", .9);
         div.html(d.data.name)
           .style("left", (d3.event.pageX) + "px")
           .style("top", (d3.event.pageY - 40) + "px");
-      }
-    })
+    }})
     .on("mouseout", function(d) {
       div.transition()
         .duration(500)
         .style("opacity", 0);
     });
 
+  circPack.append("text")
+  .attr("class", "bigtext")
+  .style("font", "50px sans-serif")
+  .attr("text-anchor", "end")
+  .attr("x", 150)
+  .attr("y", 50)
+  .text(year);
+
+
   var text = g.selectAll("text")
     .data(nodes)
     .enter().append("text")
-    .style("font", "10px sans-serif")
+    // .style("font"," sans-serif")
     .attr("pointer-events", "none")
     .attr("text-anchor", "middle")
     .attr("class", "label")
@@ -79,14 +86,15 @@ function makeCirclePacking(bodem, vissentrend, vogel, zoogdier) {
     .style("display", function(d) {
       return d.parent === root ? "inline" : "none";
     }).text(function(d) {
-      try {
-        if (d.parent.data.name != "bodemfauna") {
-          return d.data.name;
-        } else if (d.r >= 18) {
-          return d.data.name;
+        return d.data.name;
         }
-      } catch (e) {}
-    });
+    ).style("font-size", function(d) {
+      var len = d.data.name.length;
+          var size = d.r/3;
+          size *= 10 / len;
+          size += 3;
+          return Math.round(size)+'px';
+      })
 
   var node = g.selectAll("circle,text");
 
@@ -177,10 +185,21 @@ function updateCircle(bodem, vissentrend, vogel, zoogdier, year) {
       return d.children ? color(d.depth) : null;
     })
 
+    d3.select(".bigtext")
+    .transition()
+    .duration(500)
+    .text(year)
+
   var text = g.selectAll("text")
     .data(nodes)
-    .style("font", "10px sans-serif")
     .attr("pointer-events", "none")
+    .style("font-size", function(d) {
+          var len = d.data.name.length;
+          var size = d.r/3;
+          size *= 10 / len;
+          size += 1;
+          return Math.round(size)+'px';
+      })
     .attr("text-anchor", "middle")
     .attr("class", "label")
     .style("fill-opacity", function(d) {

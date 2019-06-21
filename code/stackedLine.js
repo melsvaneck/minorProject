@@ -1,10 +1,20 @@
-  function makeStackLine(bodem, vissentrend, vogel, zoogdier,data) {
+  function makeStackLine(bodem, vissentrend, vogel, zoogdier, data) {
+
+
+    var original = [];
+
+    for(var i = 0; i < data.length; i++){
+      original.push(data[i])
+    }
+
+    console.log(original)
+
 
     var margin = {
-      top: 20,
+      top: 25,
       right: 30,
       bottom: 75,
-      left: 60
+      left: 50
     };
 
     var width = document.getElementById("stackline").clientWidth;
@@ -17,7 +27,7 @@
       .append("g")
       .attr("transform", "translate(0,0)");
 
-    var object = data[0]
+    var object = original[0]
 
     var keys = []
 
@@ -35,7 +45,7 @@
     //stack the data?
     var stackedData = d3.stack()
       .keys(keys)
-      (data)
+      (original)
 
 
     // Add X axis
@@ -73,12 +83,28 @@
       .attr("transform", "translate(" + 0 + ", " + (height - margin.bottom) + ")")
       .call(xAxis);
 
+    stackedLine.select(".x.axis")
+      .selectAll("text")
+      .attr("y", 10)
+      .attr("x", 5)
+      .attr("dy", ".35em")
+      .attr("transform", "rotate(30)")
+      .style("text-anchor", "start");
+
+
     // Add X axis label:
     stackedLine.append("text")
       .attr("text-anchor", "end")
       .attr("x", width - 100)
-      .attr("y", height - 40)
+      .attr("y", height - 35)
       .text("Tijd (jaar)");
+
+    // Add X axis label:
+    stackedLine.append("text")
+      .attr("text-anchor", "end")
+      .attr("x", 300)
+      .attr("y", 20)
+      .text("inzet visserijtechnieken per jaar");
 
     // Add Y axis label:
     stackedLine.append("text")
@@ -118,10 +144,13 @@
       )
 
     stackedLine.selectAll(".x.axis .tick")
+    // .on("click", function(d){
+    //   resetStackLine()
+    // })
       .on("click", function(d) {
         updateCircle(bodem, vissentrend, vogel, zoogdier, d);
       });
-
+      
 
     // Add a clipPath: everything out of this area won't be drawn.
     var clip = stackedLine.append("defs").append("stackedLine:clipPath")
@@ -150,7 +179,7 @@
       }).curve(d3.curveCatmullRom.alpha(1)) // apply smoothing to the line
 
     // Show the areas
-    areaChart
+    var areas = areaChart
       .selectAll("mylayers")
       .data(stackedData)
       .enter()
@@ -187,7 +216,7 @@
     // Add one dot in the legend for each name.
     var size = 10
     stackedLine.append("rect")
-      .attr("x", (width - 105))
+      .attr("x", (width - 105 - margin.right))
       .attr("y", margin.top)
       .attr("width", 105)
       .attr("height", 115)
@@ -198,7 +227,7 @@
       .data(keys)
       .enter()
       .append("rect")
-      .attr("x", (width * 0.760))
+      .attr("x", (width * 0.80))
       .attr("y", function(d, i) {
         return 30 + i * (size + 5)
       }) // 100 is where the first dot appears. 25 is the distance between dots
@@ -209,13 +238,16 @@
       })
       .on("mouseover", highlight)
       .on("mouseleave", noHighlight)
+      .on("click", function(d) {
+        console.log(d);
+      })
 
     // Add one dot in the legend for each name.
     stackedLine.selectAll("mylabels")
       .data(keys)
       .enter()
       .append("text")
-      .attr("x", (width * 0.760) + size * 1.2)
+      .attr("x", (width * 0.8) + size * 1.2)
       .attr("y", function(d, i) {
         return 30 + i * (size + 5) + (size / 2)
       }) // 100 is where the first dot appears. 25 is the distance between dots
@@ -230,4 +262,86 @@
       .style("alignment-baseline", "middle")
       .on("mouseover", highlight)
       .on("mouseleave", noHighlight)
+      .on("click", function(d) {
+        })
+
+//
+// function updateStackLine(temp, name) {
+//
+//
+//   for (var i = 0; i < temp.length; i++) {
+//     test.push(temp[i][name])
+//
+//     // console.log(temp[i]);
+//   }
+//
+//   //stack the data?
+//   var stackedData = d3.stack()
+//     .keys(keys)
+//     (temp)
+//
+//   var areaChart = stackedLine.append('g')
+//     .attr("clip-path", "url(#clip)")
+//
+//   // Area generator
+//   var area = d3.area()
+//     .x(function(d) {
+//       return x(d.data.Jaar);
+//     })
+//     .y0(function(d) {
+//       return y(d[0]);
+//     })
+//     .y1(function(d) {
+//       return y(d[1]);
+//     }).curve(d3.curveCatmullRom.alpha(1)) // apply smoothing to the line
+//
+//
+//   d3.selectAll(".myArea")
+//     .data(stackedData)
+//     .transition()
+//     .attr("d", area);
+//
+//
+//   d3.selectAll(".myArea").data(stackedData).exit().remove();
+// }
+//
+// function resetStackLine() {
+//
+//   console.log("reset");
+//   //stack the data?
+//   var stackedData = d3.stack()
+//     .keys(keys)
+//     (original)
+//
+//   var areaChart = stackedLine.append('g')
+//     .attr("clip-path", "url(#clip)")
+//
+//   // Area generator
+//   var area = d3.area()
+//     .x(function(d) {
+//       return x(d.data.Jaar);
+//     })
+//     .y0(function(d) {
+//       return y(d[0]);
+//     })
+//     .y1(function(d) {
+//       return y(d[1]);
+//     }).curve(d3.curveCatmullRom.alpha(1)) // apply smoothing to the line
+//
+//
+//   d3.selectAll(".myArea").data(stackedData)
+//     .enter()
+//     .append("path")
+//     .transition()
+//     .attr("class", function(d) {
+//       return "myArea " + d.key
+//     }).style("fill", function(d) {
+//       return color(d.key);
+//     })
+//     .style("opacity", .7)
+//     .attr("d", area);
+//
+//
+//   d3.selectAll(".myArea").data(stackedData).exit().remove();
+// }
   };
