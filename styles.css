@@ -1,0 +1,100 @@
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: #F0F8FF;
+}
+
+.x.grid line {
+  stroke: lightgrey;
+  stroke-opacity: 1;
+  shape-rendering: auto;
+}
+
+.y.grid line {
+  stroke: lightgrey;
+  stroke-opacity: 1;
+  shape-rendering: auto;
+}
+
+.big-box {
+  height: 725px;
+  line-height: 30px;
+}
+
+.mini-box {
+  height: 362.5px;
+  line-height: 30px;
+}
+
+div.tooltip {
+  position: absolute;
+  text-align: center;
+  width: 120px;
+  height: 50px;
+  padding: 2px;
+  font: 11px sans-serif;
+  background: lightsteelblue;
+  border: 0px;
+  border-radius: 8px;
+  pointer-events: none;
+  font-weight: bold;
+  word-break: break-word;
+}
+
+.lijn {
+  fill: none;
+  stroke: #048f99;
+  stroke-width: 3;
+  font
+}
+
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+
+/* Style the dots by assigning a fill and stroke */
+.dot {
+  fill: #ffab00;
+  stroke: #000;
+  stroke-width: 1;
+  width: 3;
+}
+
+.focus circle {
+  fill: none;
+  stroke: steelblue;
+}
+
+.node {
+  cursor: pointer;
+}
+
+.node:hover {
+  stroke: white;
+  stroke-width: 1.5px;
+}
+
+.node--leaf {
+  fill: #BBBF95;
+}
+
+.node--leaf:hover {
+  stroke: #000;
+  stroke-width: 1.5px;
+}
+
+.label {
+  font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-anchor: middle;
+  text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
+}
+.line {
+     fill: none;
+     stroke: steelblue;
+     stroke-width: 1.5px;
+   }
+
+   .slider {
+
+     height: 100px;
+   }
