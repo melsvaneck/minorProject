@@ -1,4 +1,4 @@
-window.onload = function() {
+
 var files = ["Data/bodemFauna.json", "Data/vissentrend.json", "Data/vogels.json","Data/zoogdieren.json","Data/vistechnieken.json"];
 
 var promises = [];
@@ -19,4 +19,3 @@ Promise.all(promises).then(function(values) {
     makenormLine(values[0],values[1],values[2],values[3])
     makeSlider(years ,values[0],values[1],values[2],values[3])
 });
-}
