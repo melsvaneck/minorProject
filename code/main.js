@@ -1,6 +1,6 @@
 window.onload = function() {
 
-var files = ["/Data/bodemFauna.json", "/Data/vissentrend.json", "/Data/vogels.json","/Data/zoogdieren.json","/Data/vistechnieken.json"];
+var files = ["./Data/bodemFauna.json", "./Data/vissentrend.json", "./Data/vogels.json","./Data/zoogdieren.json","./Data/vistechnieken.json"];
 
 var promises = [];
 
