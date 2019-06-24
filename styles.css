@@ -89,12 +89,12 @@ div.tooltip {
   text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
 }
 .line {
-     fill: none;
-     stroke: steelblue;
-     stroke-width: 1.5px;
-   }
+ fill: none;
+ stroke: steelblue;
+ stroke-width: 1.5px;
+}
 
-   .slider {
+.slider {
 
-     height: 100px;
-   }
+ height: 100px;
+}

@@ -20,7 +20,7 @@ function makeSlider(years,bodem, vissentrend, vogel, zoogdier) {
     var gStep = d3
       .select('div#slider-step')
       .append('svg')
-      .attr('width', 100)
+      .attr('width', 75)
       .attr('height', height)
       .append('g')
       .attr("class", "slider")

@@ -117,6 +117,16 @@ function makenormLine(bodem, vissentrend, vogel, zoogdier) {
     .attr("y", height + 60)
     .text("Tijd (jaar)");
 
+
+    // Add Y axis label:
+    svg.append("text")
+      .attr("text-anchor", "end")
+      .attr("x", -50)
+      .attr("y", 20)
+      .text("Waarnemingen (trend)")
+      .attr("transform", "rotate(-90)");
+
+
   svg
     .append("text")
     .attr("text-anchor", "end")
