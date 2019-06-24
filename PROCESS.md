@@ -85,3 +85,10 @@ ook alle namen bij de plots gezet en een slider toegevoegt die de circle packing
 
 ook nog extra infopagina's gemaakt.
 ![mouse](/images/text.PNG)
+
+# day 15  (20-6-2019)
+Knoppen toegevoegd aan stacked area chart die areas kunnen verbergen.
+ook nieuwe html-paginas toegevoegd over visserij visserijtechnieken.
+
+![mouse](/images/area1.PNG)
+![mouse](/images/area2.PNG)
