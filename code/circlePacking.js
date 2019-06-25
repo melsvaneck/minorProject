@@ -50,7 +50,7 @@ function makeCirclePacking(bodem, vissentrend, vogel, zoogdier) {
         updateLine([d.data.name, d.parent.data.name], bodem, vissentrend, vogel, zoogdier);
       } else if (focus !== d) zoom(d), d3.event.stopPropagation();
     }).on("mouseover", function(d) {
-      if (d.depth == 2) {
+      if (d.depth >= 2) {
         div.transition()
           .duration(200)
           .style("opacity", .9);
@@ -66,11 +66,11 @@ function makeCirclePacking(bodem, vissentrend, vogel, zoogdier) {
 
   circPack.append("text")
   .attr("class", "bigtext")
-  .style("font", "50px sans-serif")
-  .attr("text-anchor", "end")
-  .attr("x", 150)
+  .style("font", "24px sans-serif")
+  .attr("text-anchor", "start")
+  .attr("x", 1)
   .attr("y", 50)
-  .text(year);
+  .text("Trend van diersoorten in " + year + "");
 
 
   var text = g.selectAll("text")
@@ -193,13 +193,6 @@ function updateCircle(bodem, vissentrend, vogel, zoogdier, year) {
   var text = g.selectAll("text")
     .data(nodes)
     .attr("pointer-events", "none")
-    .style("font-size", function(d) {
-          var len = d.data.name.length;
-          var size = d.r/3;
-          size *= 10 / len;
-          size += 1;
-          return Math.round(size)+'px';
-      })
     .attr("text-anchor", "middle")
     .attr("class", "label")
     .style("fill-opacity", function(d) {
@@ -208,14 +201,15 @@ function updateCircle(bodem, vissentrend, vogel, zoogdier, year) {
     .style("display", function(d) {
       return d.parent === root ? "inline" : "none";
     }).text(function(d) {
-      try {
-        if (d.parent.data.name != "bodemfauna") {
-          return d.data.name;
-        } else if (d.r >= 18) {
-          return d.data.name;
+        return d.data.name;
         }
-      } catch (e) {}
-    });
+    ).style("font-size", function(d) {
+      var len = d.data.name.length;
+          var size = d.r/3;
+          size *= 10 / len;
+          size += 3;
+          return Math.round(size)+'px';
+      })
 
   var node = g.selectAll("circle,text");
 
