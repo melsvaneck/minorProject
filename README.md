@@ -6,6 +6,11 @@ samen met data over fauna in de Noordzee. Met deze data zijn er meerdere visuali
 
 ![eindpagina](/images/eindversie.png)
 
+op deze webpagina zijn 3 VISualisaties te zien. Links bovenaan is een stacked area chart te zien die de inzet van kottervisserijtechnieken op de noordzee over de jaren heen laat zien,
+door op de gekleurde blokjes of text op de legenda te klikken kan je de visserijtechniek weg halen of weer tevoorschijn halen.
+Rechts op de pagina is een cicrcle packing chart te zien met daarin allerlij soorten fauna van de Noordzee, kies een jaar met de slider of klik op een bubbel om te zien watvoor diersoorten er allemaal te zien zijn,
+klik op een diersoort om de line-chart rechts onderin te updaten!
+
 ## Aan de slag (Getting Started)
 
 ### Structuur (Structure)
