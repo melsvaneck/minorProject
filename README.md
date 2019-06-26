@@ -22,14 +22,15 @@ Alle javascript codes staan in de folder code. de html pagina's staan in de map 
 
 ## Bronnen
 
-# data
+### data
 * https://www.clo.nl/
 
-# code voorbeelden
+### code voorbeelden
 * https://www.d3-graph-gallery.com/graph/stackedarea_wideinput.html
 * https://observablehq.com/@d3/zoomable-circle-packing
 * https://bl.ocks.org/gordlea/27370d1eea8464b04538e6d8ced39e89
 * https://bl.ocks.org/larsenmtl/e3b8b7c2ca4787f77d78f58d41c3da91
+
 
 ## Dankwoord (Acknowledgments)
 
