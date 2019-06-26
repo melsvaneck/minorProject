@@ -31,44 +31,6 @@ def read_csv(input_csv):
 
     # read the csv file with pandas
     data = pd.read_csv(input_csv, delimiter=";")
-    # data = data.fillna(0)
-    #
-    # data['Boomkor'].replace(regex=True,
-    #                         inplace=True,
-    #                         to_replace=r',',
-    #                         value=r'.')
-    # data['Flyshoot'].replace(regex=True,
-    #                          inplace=True,
-    #                          to_replace=r',',
-    #                          value=r'.')
-    #
-    # data['Garnalen'].replace(regex=True,
-    #                          inplace=True,
-    #                          to_replace=r',',
-    #                          value=r'.')
-    # data['Puls'].replace(regex=True,
-    #                      inplace=True,
-    #                      to_replace=r',',
-    #                      value=r'.')
-    # data['Sumwing'].replace(regex=True,
-    #                         inplace=True,
-    #                         to_replace=r',',
-    #                         value=r'.')
-    # data['Diversen'].replace(regex=True,
-    #                          inplace=True,
-    #                          to_replace=r',',
-    #                          value=r'.')
-    #
-    # data['Boomkor'] = pd.to_numeric(data['Boomkor'], errors='coerce')
-    # data['Flyshoot'] = pd.to_numeric(data['Flyshoot'], errors='coerce')
-    # data['Garnalen'] = pd.to_numeric(data['Garnalen'], errors='coerce')
-    # data['Puls'] = pd.to_numeric(data['Puls'], errors='coerce')
-
-    # data['Diversen'] = pd.to_numeric(data['Diversen'], errors='coerce')
-    # 
-    # data['Jaar'] = pd.to_numeric(data['Jaar'], errors='coerce')
-    #
-    # data.set_index('Jaar',inplace=True)
 
     return data
 

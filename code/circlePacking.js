@@ -19,7 +19,7 @@ function makeCirclePacking(bodem, vissentrend, vogel, zoogdier) {
     .attr("height", diameter);
 
   // make the g element an place it in the middle
-  var g = circPack.append("g").attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
+   g = circPack.append("g").attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
 
   // color scaling
   var color = d3.scaleOrdinal()

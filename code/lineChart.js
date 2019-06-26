@@ -26,7 +26,7 @@ function makenormLine(bodem, vissentrend, vogel, zoogdier) {
   var data = ["Noordse stormvogel", "vogels"];
 
   // make data ready for the line chart according to the chosen species
-  var dataset = makeLineData(data, bodem, vissentrend, vogel, zoogdier)
+  var dataset = makeLineData(data, bodem, vissentrend, vogel, zoogdier);
 
   // make x-scale
   var xScale = d3.scaleLinear()
@@ -87,13 +87,13 @@ function makenormLine(bodem, vissentrend, vogel, zoogdier) {
         return d.year;
       })) - (d3.min(dataset, function(d) {
         return d.year;
-      })))
-  };
+      })));
+  }
 
   // gridlines in y axis function
   function make_y_gridlines() {
-    return d3.axisLeft(yScale)
-  };
+    return d3.axisLeft(yScale);
+  }
 
   // append the x gridlines
   normLine.append("g")
@@ -158,16 +158,13 @@ function makenormLine(bodem, vissentrend, vogel, zoogdier) {
     .enter().append("circle")
     .attr("class", "dot")
     .attr("cx", function(d, i) {
-      return xScale(i + min)
+      return xScale(i + min);
     })
     .attr("cy", function(d) {
-      return yScale(d.y)
+      return yScale(d.y);
     })
-    .attr("r", 5)
-    .on("mouseover", function(a, b, c) {
-      console.log(a)
-    })
-    .on("mouseout", function() {});
+    .attr("r", 5);
+
 
   // reform the data for the mousetracker function
   var values = [];
@@ -177,17 +174,17 @@ function makenormLine(bodem, vissentrend, vogel, zoogdier) {
     values.push({
       date: d.year,
       temperature: d.y
-    })
+    });
   });
 
   var trend = [{
     name: "lineone",
     values: values
-  }]
+  }];
 
   // append a group for the mouse tracker
   var mouseG = normLine.append("g")
-    .attr("class", "mouse-over-effects")
+    .attr("class", "mouse-over-effects");
 
   // this is the black vertical line to follow mouse
   mouseG.append("path")
@@ -282,7 +279,7 @@ function makenormLine(bodem, vissentrend, vogel, zoogdier) {
 function updateLine(data, bodem, vissentrend, vogel, zoogdier) {
 
   // make the new dataset according too the chosen animal
-  var dataset = makeLineData(data, bodem, vissentrend, vogel, zoogdier)
+  var dataset = makeLineData(data, bodem, vissentrend, vogel, zoogdier);
 
   // make margins again
   var margin = {
@@ -318,7 +315,7 @@ function updateLine(data, bodem, vissentrend, vogel, zoogdier) {
   // get smallest year number again
   min = d3.min(dataset, function(d) {
     return d.year;
-  })
+  });
 
   var min = parseInt(min, 10);
 
@@ -330,7 +327,7 @@ function updateLine(data, bodem, vissentrend, vogel, zoogdier) {
     .y(function(d) {
       return yScale(d.y);
     }) // set the y values for the line generator
-    .curve(d3.curveMonotoneX) // apply smoothing to the line
+    .curve(d3.curveMonotoneX); // apply smoothing to the line
 
    // gridlines in x axis function
   function make_x_gridlines() {
@@ -339,12 +336,12 @@ function updateLine(data, bodem, vissentrend, vogel, zoogdier) {
         return d.year;
       })) - (d3.min(dataset, function(d) {
         return d.year;
-      })))
+      })));
   }
 
   // gridlines in y axis function
   function make_y_gridlines() {
-    return d3.axisLeft(yScale)
+    return d3.axisLeft(yScale);
   }
 
   //Call the y axis
@@ -358,7 +355,7 @@ function updateLine(data, bodem, vissentrend, vogel, zoogdier) {
     .transition()
     .duration(1000)
     .call(d3.axisBottom(xScale).tickFormat(d3.format("d"))
-      .ticks(20))
+      .ticks(20));
 
   // turn the x axis labels 30 degrees
   normLine.select(".x.axis")
@@ -377,7 +374,7 @@ function updateLine(data, bodem, vissentrend, vogel, zoogdier) {
     .call(make_y_gridlines()
       .tickSize(-width)
       .tickFormat("")
-    )
+    );
 
   // add the X gridlines
   normLine.selectAll(".x.grid")
@@ -386,7 +383,7 @@ function updateLine(data, bodem, vissentrend, vogel, zoogdier) {
     .call(make_x_gridlines()
       .tickSize(-height)
       .tickFormat("")
-    )
+    );
 
   // change the animal name of the chart
   d3.select(".soort")
@@ -410,12 +407,12 @@ function updateLine(data, bodem, vissentrend, vogel, zoogdier) {
     .duration(1000) // Uses the enter().append() method
     .attr("class", "dot") // Assign a class for styling
     .attr("cx", function(d, i) {
-      return xScale(i + min)
+      return xScale(i + min);
     })
     .attr("cy", function(d) {
-      return yScale(d.y)
+      return yScale(d.y);
     })
-    .attr("r", 5)
+    .attr("r", 5);
 
   // update the dots
   normLine.selectAll(".dot")
@@ -424,34 +421,34 @@ function updateLine(data, bodem, vissentrend, vogel, zoogdier) {
     .duration(1000) // Uses the enter().append() method
     .attr("class", "dot") // Assign a class for styling
     .attr("cx", function(d, i) {
-      return xScale(i + min)
+      return xScale(i + min);
     })
     .attr("cy", function(d) {
-      return yScale(d.y)
+      return yScale(d.y);
     })
-    .attr("r", 5)
+    .attr("r", 5);
 
   // remove extra dots if any
   normLine.selectAll(".dot")
     .data(dataset).exit().remove();
 
   // update the mouse tracking functioni according to the new data
-  values = []
+  values = [];
 
   dataset.forEach(function(d) {
     values.push({
       date: d.year,
       temperature: d.y
-    })
+    });
   });
 
   var trend = [{
     name: "lineone",
     values: values
-  }]
+  }];
 
   var mouseG = normLine.selectAll(".mouse-over-effects")
-    .attr("class", "mouse-over-effects")
+    .attr("class", "mouse-over-effects");
 
   var lines = document.getElementsByClassName('lijn');
 
@@ -518,7 +515,7 @@ function updateLine(data, bodem, vissentrend, vogel, zoogdier) {
 // function to make the data usable for the line graph
 function makeLineData(data, bodem, vissentrend, vogel, zoogdier) {
 
-  var lineData = []
+  var lineData = [];
 
   // choose the right data according to the species with a switch statement
   switch (data[1]) {
@@ -555,7 +552,7 @@ function makeLineData(data, bodem, vissentrend, vogel, zoogdier) {
       });
       break;
     default:
-      null
+      null;
   }
 
   return lineData;
