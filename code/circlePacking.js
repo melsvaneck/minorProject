@@ -258,8 +258,6 @@ function updateCircle(bodem, vissentrend, vogel, zoogdier, year) {
   // zoom to normal view
   zoomTo([root.x, root.y, root.r * 2 + margin]);
 
-  zoom(root);
-
   function zoomTo(v) {
     // make k-factor for sizing
     var k = diameter / v[2];
@@ -276,37 +274,6 @@ function updateCircle(bodem, vissentrend, vogel, zoogdier, year) {
     circle.attr("r", function(d) {
       return d.r * k;
     });
-  }
-
-  function zoom(d) {
-    var focus0 = focus;
-    focus = d;
-
-    // make variable for the transition
-    var transition = d3.transition()
-      .duration(d3.event.altKey ? 7500 : 750)
-      .tween("zoom", function(d) {
-        var i = d3.interpolateZoom(view, [focus.x, focus.y, focus.r * 2]);
-        return function(t) {
-          zoomTo(i(t));
-        };
-      });
-
-    // show all the circle texts acoording to where te zoom went to
-    transition.selectAll("text").filter('.label')
-      .filter(function(d) {
-        return d.parent === focus || this.style.display === "inline";
-      })
-      .style("fill-opacity", function(d) {
-        return d.parent === focus ? 1 : 0;
-      })
-      .on("start", function(d) {
-        if (d.parent === focus) this.style.display = "inline";
-      })
-      .on("end", function(d) {
-        if (d.parent !== focus) this.style.display = "none";
-      });
-
   }
 }
 
