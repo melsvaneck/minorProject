@@ -518,7 +518,7 @@ function updateLine(data, bodem, vissentrend, vogel, zoogdier) {
 // function to make the data usable for the line graph
 function makeLineData(data, bodem, vissentrend, vogel, zoogdier) {
 
-  lineData = []
+  var lineData = []
 
   // choose the right data according to the species with a switch statement
   switch (data[1]) {

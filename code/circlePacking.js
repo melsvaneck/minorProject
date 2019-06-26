@@ -16,15 +16,15 @@ function makeCirclePacking(bodem, vissentrend, vogel, zoogdier) {
   var circPack = d3.select("#bubble")
     .append("svg")
     .attr("width", diameter)
-    .attr("height", diameter)
+    .attr("height", diameter);
 
   // make the g element an place it in the middle
-  g = circPack.append("g").attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
+  var g = circPack.append("g").attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
 
   // color scaling
   var color = d3.scaleOrdinal()
     .domain([0, 1, 2])
-    .range(["#012172", "0486DB", "#05ACD3"])
+    .range(["#012172", "0486DB", "#05ACD3"]);
 
   // vreate pack layout
   var pack = d3.pack()
@@ -37,7 +37,7 @@ function makeCirclePacking(bodem, vissentrend, vogel, zoogdier) {
     .style("opacity", 0);
 
   // structure the data witth hierarchy function
-  root = d3.hierarchy(dieren)
+  var root = d3.hierarchy(dieren)
     .sum(function(d) {
       return d.size;
     })
@@ -116,7 +116,7 @@ function makeCirclePacking(bodem, vissentrend, vogel, zoogdier) {
       size *= 10 / len;
       size += 3;
       return Math.round(size) + 'px';
-    })
+    });
 
   // make a variabe for the text and circles
   var node = g.selectAll("circle,text");
@@ -142,7 +142,7 @@ function makeCirclePacking(bodem, vissentrend, vogel, zoogdier) {
     });
     text.attr("transform", function(d) {
       return "translate(" + (d.x - v[0]) * k + "," + (d.y - v[1]) * k + ")";
-    })
+    });
     // add radius to the circles
     circle.attr("r", function(d) {
       return d.r * k;
@@ -191,12 +191,12 @@ function updateCircle(bodem, vissentrend, vogel, zoogdier, year) {
   var diameter = document.getElementById("bubble").clientHeight;
 
   // get the data of the chosen year
-  var dieren = pickYear(bodem, vissentrend, vogel, zoogdier, year)
+  var dieren = pickYear(bodem, vissentrend, vogel, zoogdier, year);
 
   // make color scaling again
   var color = d3.scaleOrdinal()
     .domain([0, 1, 2])
-    .range(["#012172", "0486DB", "#05ACD3"])
+    .range(["#012172", "0486DB", "#05ACD3"]);
 
   //  make pack variable for the circles
   var pack = d3.pack()
@@ -204,7 +204,7 @@ function updateCircle(bodem, vissentrend, vogel, zoogdier, year) {
     .padding(2);
 
   // make the right hierarchy for the data
-  root = d3.hierarchy(dieren)
+  var root = d3.hierarchy(dieren)
     .sum(function(d) {
       return d.size;
     })
@@ -224,13 +224,13 @@ function updateCircle(bodem, vissentrend, vogel, zoogdier, year) {
     })
     .style("fill", function(d) {
       return d.children ? color(d.depth) : null;
-    })
+    });
 
   // update the chart name by year
   d3.select(".bigtext")
     .transition()
     .duration(500)
-    .text("Trend van diersoorten in " + year + "")
+    .text("Trend van diersoorten in " + year + "");
 
   // update all the texts
   var text = g.selectAll("text")
@@ -251,7 +251,7 @@ function updateCircle(bodem, vissentrend, vogel, zoogdier, year) {
       size *= 10 / len;
       size += 3;
       return Math.round(size) + 'px';
-    })
+    });
 
   var node = g.selectAll("circle,text");
 
@@ -269,7 +269,8 @@ function updateCircle(bodem, vissentrend, vogel, zoogdier, year) {
     });
     text.attr("transform", function(d) {
       return "translate(" + (d.x - v[0]) * k + "," + (d.y - v[1]) * k + ")";
-    })
+    });
+
     circle.attr("r", function(d) {
       return d.r * k;
     });
@@ -279,13 +280,13 @@ function updateCircle(bodem, vissentrend, vogel, zoogdier, year) {
 function pickYear(bodem, vissentrend, vogel, zoogdier, year) {
 
   // make bojects of the selected year per species
-  var bodemfauna = bodem[year]
-  var zoogdieren = zoogdier[year]
-  var vogels = vogel[year]
-  var vissen = vissentrend[year]
+  var bodemfauna = bodem[year];
+  var zoogdieren = zoogdier[year];
+  var vogels = vogel[year];
+  var vissen = vissentrend[year];
 
   // make array for the species
-  var bf = []
+  var bf = [];
 
   // parse the object and format the data the right way for the hierarchy
   Object.keys(bodemfauna).forEach(key => {
@@ -295,11 +296,11 @@ function pickYear(bodem, vissentrend, vogel, zoogdier, year) {
     bf.push({
       "name": key,
       "size": bodemfauna[key]
-    })
-  })
+    });
+  });
 
   // make array for the species (zd stands vooor zoogdieren)
-  var zd = []
+  var zd = [];
 
   // parse the object and format the data the right way for the hierarchy
   Object.keys(zoogdieren).forEach(key => {
@@ -309,11 +310,11 @@ function pickYear(bodem, vissentrend, vogel, zoogdier, year) {
     zd.push({
       "name": key,
       "size": zoogdieren[key]
-    })
-  })
+    });
+  });
 
   // make array for the species
-  var vg = []
+  var vg = [];
 
   // parse the object and format the data the right way for the hierarchy
   Object.keys(vogels).forEach(key => {
@@ -323,11 +324,11 @@ function pickYear(bodem, vissentrend, vogel, zoogdier, year) {
     vg.push({
       "name": key,
       "size": vogels[key]
-    })
-  })
+    });
+  });
 
   // make array for the species
-  var vs = []
+  var vs = [];
 
   // parse the object and format the data the right way for the hierarchy
   Object.keys(vissen).forEach(key => {
@@ -337,10 +338,10 @@ function pickYear(bodem, vissentrend, vogel, zoogdier, year) {
     vs.push({
       "name": key,
       "size": vissen[key]
-    })
-  })
+    });
+  });
 
-// add all the arrays together to one usable dataset 
+// add all the arrays together to one usable dataset
   var dieren = {
     "name": "diersoorten",
     'children': [{
@@ -356,7 +357,7 @@ function pickYear(bodem, vissentrend, vogel, zoogdier, year) {
       'name': "vogels",
       "children": vg
     }]
-  }
+  };
 
   return dieren;
 }

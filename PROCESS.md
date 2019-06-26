@@ -73,7 +73,7 @@ hele code aangepast door functies overal voor te maken en verschillende programm
 
 ![mouse](/images/mouseover.png)
 
-# day 14  (20-6-2019)
+# day 14  (21-6-2019)
 data gevonden over eerdere jaren visserijtechnieken
 <!-- http://edepot.wur.nl/284011 -->
 ![mouse](/images/extradata.PNG)
@@ -88,10 +88,17 @@ ook nog extra infopagina's gemaakt.
 
 
 
-# day 15  (20-6-2019)
+# day 15  (24-6-2019)
 Knoppen toegevoegd aan stacked area chart die areas kunnen verbergen.
 ook nieuwe html-paginas toegevoegd over visserij visserijtechnieken.
 Geen tijd meer voor de 4e chart. dus die ga ik ook niet meer maken. in plaats daarvan ga ik meerr tijd besteden aan de site mooi krijgen.
 
 ![mouse](/images/area1.PNG)
 ![mouse](/images/area2.PNG)
+
+# day 16  (25-6-2019)
+Alle code doorgespit en netjes gemaakt.
+
+
+# day 17  (26-6-2019)
+Alle files controleren voor het inleveren van vanmiddag
