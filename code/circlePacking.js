@@ -181,23 +181,29 @@ function makeCirclePacking(bodem, vissentrend, vogel, zoogdier) {
   }
 }
 
-
+// function to update the circle according to the chosen year
 function updateCircle(bodem, vissentrend, vogel, zoogdier, year) {
 
-  var margin = 20
+  // make a margin again
+  var margin = 5;
 
+  // get the height for diameter
   var diameter = document.getElementById("bubble").clientHeight;
 
+  // get the data of the chosen year
   var dieren = pickYear(bodem, vissentrend, vogel, zoogdier, year)
 
+  // make color scaling again
   var color = d3.scaleOrdinal()
     .domain([0, 1, 2])
     .range(["#012172", "0486DB", "#05ACD3"])
 
+  //  make pack variable for the circles
   var pack = d3.pack()
     .size([diameter - margin, diameter - margin])
     .padding(2);
 
+  // make the right hierarchy for the data
   root = d3.hierarchy(dieren)
     .sum(function(d) {
       return d.size;
@@ -210,6 +216,7 @@ function updateCircle(bodem, vissentrend, vogel, zoogdier, year) {
     nodes = pack(root).descendants(),
     view;
 
+  // update chircles
   var circle = g.selectAll("circle")
     .data(nodes)
     .attr("class", function(d) {
@@ -219,11 +226,13 @@ function updateCircle(bodem, vissentrend, vogel, zoogdier, year) {
       return d.children ? color(d.depth) : null;
     })
 
+  // update the chart name by year
   d3.select(".bigtext")
     .transition()
     .duration(500)
     .text("Trend van diersoorten in " + year + "")
 
+  // update all the texts
   var text = g.selectAll("text")
     .data(nodes)
     .attr("pointer-events", "none")
@@ -246,12 +255,15 @@ function updateCircle(bodem, vissentrend, vogel, zoogdier, year) {
 
   var node = g.selectAll("circle,text");
 
+  // zoom to normal view
   zoomTo([root.x, root.y, root.r * 2 + margin]);
 
   function zoomTo(v) {
+    // make k-factor for sizing
     var k = diameter / v[2];
     view = v;
 
+    // change diameter
     node.attr("transform", function(d) {
       return "translate(" + (d.x - v[0]) * k + "," + (d.y - v[1]) * k + ")";
     });
@@ -261,100 +273,74 @@ function updateCircle(bodem, vissentrend, vogel, zoogdier, year) {
     circle.attr("r", function(d) {
       return d.r * k;
     });
-
-    function zoom(d) {
-      var focus0 = focus;
-      focus = d;
-
-      var transition = d3.transition()
-        .duration(d3.event.altKey ? 7500 : 750)
-        .tween("zoom", function(d) {
-          var i = d3.interpolateZoom(view, [focus.x, focus.y, focus.r * 2]);
-          return function(t) {
-            zoomTo(i(t));
-          };
-        });
-
-      transition.selectAll("text").filter('.label')
-        .filter(function(d) {
-          return d.parent === focus || this.style.display === "inline";
-        })
-        .style("fill-opacity", function(d) {
-          return d.parent === focus ? 1 : 0;
-        })
-        .on("start", function(d) {
-          if (d.parent === focus) this.style.display = "inline";
-        })
-        .on("end", function(d) {
-          if (d.parent !== focus) this.style.display = "none";
-        });
-
-    }
   }
 }
 
 function pickYear(bodem, vissentrend, vogel, zoogdier, year) {
 
+  // make bojects of the selected year per species
   var bodemfauna = bodem[year]
   var zoogdieren = zoogdier[year]
   var vogels = vogel[year]
   var vissen = vissentrend[year]
 
+  // make array for the species
   var bf = []
 
-
-    Object.keys(bodemfauna).forEach(key => {
-      if (bodemfauna[key] == null) {
-        bodemfauna[key] = 0;
-      }
-      bf.push({
-        "name": key,
-        "size": bodemfauna[key]
-      })
+  // parse the object and format the data the right way for the hierarchy
+  Object.keys(bodemfauna).forEach(key => {
+    if (bodemfauna[key] == null) {
+      bodemfauna[key] = 0;
+    }
+    bf.push({
+      "name": key,
+      "size": bodemfauna[key]
     })
+  })
 
-
+  // make array for the species (zd stands vooor zoogdieren)
   var zd = []
 
-
-    Object.keys(zoogdieren).forEach(key => {
-      if (zoogdieren[key] == null) {
-        zoogdieren[key] = 0;
-      }
-      zd.push({
-        "name": key,
-        "size": zoogdieren[key]
-      })
+  // parse the object and format the data the right way for the hierarchy
+  Object.keys(zoogdieren).forEach(key => {
+    if (zoogdieren[key] == null) {
+      zoogdieren[key] = 0;
+    }
+    zd.push({
+      "name": key,
+      "size": zoogdieren[key]
     })
+  })
 
-
+  // make array for the species
   var vg = []
 
-
-    Object.keys(vogels).forEach(key => {
-      if (vogels[key] == null) {
-        vogels[key] = 0;
-      }
-      vg.push({
-        "name": key,
-        "size": vogels[key]
-      })
+  // parse the object and format the data the right way for the hierarchy
+  Object.keys(vogels).forEach(key => {
+    if (vogels[key] == null) {
+      vogels[key] = 0;
+    }
+    vg.push({
+      "name": key,
+      "size": vogels[key]
     })
+  })
 
-
+  // make array for the species
   var vs = []
 
-    Object.keys(vissen).forEach(key => {
-      if (vissen[key] == null) {
-        vissen[key] = 0;
-      }
-      vs.push({
-        "name": key,
-        "size": vissen[key]
-      })
+  // parse the object and format the data the right way for the hierarchy
+  Object.keys(vissen).forEach(key => {
+    if (vissen[key] == null) {
+      vissen[key] = 0;
+    }
+    vs.push({
+      "name": key,
+      "size": vissen[key]
     })
+  })
 
-
+// add all the arrays together to one usable dataset 
   var dieren = {
     "name": "diersoorten",
     'children': [{

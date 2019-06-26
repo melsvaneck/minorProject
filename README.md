@@ -13,7 +13,7 @@ samen met data over fauna in de Noordzee. Met deze data zijn er meerdere visuali
 
 ### Structuur (Structure)
 
-Alle Python scripts staan in de folder Code. In de map Data zitten alle input waardes en in de map resultaten worden alle resultaten opgeslagen door de code.
+Alle javascript codes staan in de folder code. de html pagina's staan in de map van de repository zelf.
 
 ## Auteurs (Authors)
 * Ik
