@@ -135,7 +135,7 @@ function makenormLine(bodem, vissentrend, vogel, zoogdier) {
     .text("Waarnemingen (trend)")
     .attr("transform", "rotate(-90)");
 
-// add chart name
+  // add chart name
   svg
     .append("text")
     .attr("text-anchor", "end")
@@ -185,19 +185,22 @@ function makenormLine(bodem, vissentrend, vogel, zoogdier) {
     values: values
   }]
 
-
+  // append a group for the mouse tracker
   var mouseG = normLine.append("g")
     .attr("class", "mouse-over-effects")
 
-
-  mouseG.append("path") // this is the black vertical line to follow mouse
+  // this is the black vertical line to follow mouse
+  mouseG.append("path")
     .attr("class", "mouse-line")
     .style("stroke", "black")
     .style("stroke-width", "1px")
     .style("opacity", "0");
 
+  // mak a variable form the line
   var lines = document.getElementsByClassName('lijn');
 
+
+  //
   var mousePerLine = mouseG.selectAll('.mouse-per-line')
     .data(trend)
     .enter()
@@ -275,10 +278,13 @@ function makenormLine(bodem, vissentrend, vogel, zoogdier) {
     });
 }
 
+// update the line chart according to the selected circle from the circle packing chart
 function updateLine(data, bodem, vissentrend, vogel, zoogdier) {
 
+  // make the new dataset according too the chosen animal
   var dataset = makeLineData(data, bodem, vissentrend, vogel, zoogdier)
 
+  // make margins again
   var margin = {
     top: 20,
     right: 30,
@@ -286,34 +292,37 @@ function updateLine(data, bodem, vissentrend, vogel, zoogdier) {
     left: 60
   };
 
+
+  // get the width and height according to the div sixe again
   var width = document.getElementById("normline").clientWidth - margin.top - margin.bottom;
   var height = document.getElementById("normline").clientHeight - margin.top - margin.bottom;
 
+  // select the div
+  var normLine = d3.select("#normline");
 
-  var normLine = d3.select("#normline")
-
-  // 5. X scale will use the index of our data
+  //make the new x scale
   var xScale = d3.scaleLinear()
     .domain([d3.min(dataset, function(d) {
       return d.year;
     }), d3.max(dataset, function(d) {
       return d.year;
     })]) // input
-    .range([0, width]); // output
+    .range([0, width]);
 
-  // 6. Y scale will use the randomly generate number
+  // make the new y scale
   var yScale = d3.scaleLinear()
     .domain([0, d3.max(dataset, function(d) {
       return Math.ceil(d.y / 100) * 100;
-    })]).range([height, 0]); // output
+    })]).range([height, 0]);
 
+  // get smallest year number again
   min = d3.min(dataset, function(d) {
     return d.year;
   })
 
   var min = parseInt(min, 10);
 
-  // 7. d3's line generator
+  //make new line according to new data
   var line = d3.line()
     .x(function(d, i) {
       return xScale(i + min);
@@ -323,6 +332,7 @@ function updateLine(data, bodem, vissentrend, vogel, zoogdier) {
     }) // set the y values for the line generator
     .curve(d3.curveMonotoneX) // apply smoothing to the line
 
+   // gridlines in x axis function
   function make_x_gridlines() {
     return d3.axisBottom(xScale)
       .ticks((d3.max(dataset, function(d) {
@@ -332,26 +342,25 @@ function updateLine(data, bodem, vissentrend, vogel, zoogdier) {
       })))
   }
 
-
-
   // gridlines in y axis function
   function make_y_gridlines() {
     return d3.axisLeft(yScale)
   }
 
-  // 4. Call the y axis in a group tag
+  //Call the y axis
   normLine.selectAll(".y.axis")
     .transition()
     .duration(1000)
     .call(d3.axisLeft(yScale)); // Create an axis component with d3.axisLeft
 
-  // 4. Call the y axis in a group tag
+  //Call the x axis
   normLine.select(".x.axis")
     .transition()
     .duration(1000)
     .call(d3.axisBottom(xScale).tickFormat(d3.format("d"))
       .ticks(20))
 
+  // turn the x axis labels 30 degrees
   normLine.select(".x.axis")
     .selectAll("text")
     .attr("y", 10)
@@ -370,7 +379,7 @@ function updateLine(data, bodem, vissentrend, vogel, zoogdier) {
       .tickFormat("")
     )
 
-  // add the gridlines
+  // add the X gridlines
   normLine.selectAll(".x.grid")
     .transition()
     .duration(500)
@@ -379,19 +388,21 @@ function updateLine(data, bodem, vissentrend, vogel, zoogdier) {
       .tickFormat("")
     )
 
+  // change the animal name of the chart
   d3.select(".soort")
     .attr("text-anchor", "end")
     .attr("x", width + 50)
     .attr("y", 15)
     .text(data[0]);
 
-  // 9. Append the path, bind the data, and call the line generator
+  //change the path with the new line
   normLine.selectAll(".lijn")
     .datum(dataset)
     .transition()
-    .duration(1000) // 10. Binds data to the line
-    .attr("d", line); // 11. Calls the line generator
+    .duration(1000) //Binds data to the line
+    .attr("d", line); //Calls the line generator
 
+  // append new dots if there ara new ones
   normLine.selectAll(".dot")
     .data(dataset)
     .enter().append("circle")
@@ -406,6 +417,7 @@ function updateLine(data, bodem, vissentrend, vogel, zoogdier) {
     })
     .attr("r", 5)
 
+  // update the dots
   normLine.selectAll(".dot")
     .data(dataset)
     .transition()
@@ -419,9 +431,11 @@ function updateLine(data, bodem, vissentrend, vogel, zoogdier) {
     })
     .attr("r", 5)
 
+  // remove extra dots if any
   normLine.selectAll(".dot")
     .data(dataset).exit().remove();
 
+  // update the mouse tracking functioni according to the new data
   values = []
 
   dataset.forEach(function(d) {
@@ -501,11 +515,12 @@ function updateLine(data, bodem, vissentrend, vogel, zoogdier) {
     });
 }
 
-
+// function to make the data usable for the line graph
 function makeLineData(data, bodem, vissentrend, vogel, zoogdier) {
 
   lineData = []
 
+  // choose the right data according to the species with a switch statement
   switch (data[1]) {
     case "bodemfauna":
       Object.keys(bodem).forEach(year => {
