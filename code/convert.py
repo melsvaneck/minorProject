@@ -65,17 +65,12 @@ def read_csv(input_csv):
     # data['Puls'] = pd.to_numeric(data['Puls'], errors='coerce')
 
     # data['Diversen'] = pd.to_numeric(data['Diversen'], errors='coerce')
+    # 
+    # data['Jaar'] = pd.to_numeric(data['Jaar'], errors='coerce')
+    #
+    # data.set_index('Jaar',inplace=True)
 
-
-    data['Jaar'] = pd.to_numeric(data['Jaar'], errors='coerce')
-    data.set_index('Jaar',inplace=True)
-    print(data)
     return data
-
-
-def make_csv(data):
-    data.to_csv(r'Honey_bees', index=False)
-
 
 def make_json(data):
 

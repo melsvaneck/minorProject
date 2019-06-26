@@ -1,4 +1,6 @@
 function makenormLine(bodem, vissentrend, vogel, zoogdier) {
+
+  // make the margins
   var margin = {
     top: 20,
     right: 30,
@@ -6,22 +8,27 @@ function makenormLine(bodem, vissentrend, vogel, zoogdier) {
     left: 60
   };
 
+  // get the height and the width of the div
   var width = document.getElementById("normline").clientWidth - margin.top - margin.bottom;
   var height = document.getElementById("normline").clientHeight - margin.top - margin.bottom;
 
+  // append the svg to the div
   var svg = d3.select("#normline")
     .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
 
+  // append a g element tot the svg
   normLine = svg.append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+  // make variable for default data
   var data = ["Noordse stormvogel", "vogels"];
 
+  // make data ready for the line chart according to the chosen species
   var dataset = makeLineData(data, bodem, vissentrend, vogel, zoogdier)
 
-  // 5. X scale will use the index of our data
+  // make x-scale
   var xScale = d3.scaleLinear()
     .domain([d3.min(dataset, function(d) {
       return d.year;
@@ -30,27 +37,16 @@ function makenormLine(bodem, vissentrend, vogel, zoogdier) {
     })]) // input
     .range([0, width]); // output
 
-  // 6. Y scale will use the randomly generate number
+  // make y-scale
   var yScale = d3.scaleLinear()
     .domain([0, d3.max(dataset, function(d) {
       return Math.ceil(d.y / 100) * 100;
     })]).range([height, 0]); // output
 
+  // get the smallest number of a year
   min = d3.min(dataset, function(d) {
     return d.year;
   })
-
-  var min = parseInt(min, 10);
-
-  // 7. d3's line generator
-  var line = d3.line()
-    .x(function(d, i) {
-      return xScale(i + min);
-    }) // set the x values for the line generator
-    .y(function(d) {
-      return yScale(d.y);
-    }) // set the y values for the line generator
-    .curve(d3.curveMonotoneX) // apply smoothing to the line
 
   // 3. Call the x axis in a group tag
   normLine.append("g")
@@ -70,6 +66,20 @@ function makenormLine(bodem, vissentrend, vogel, zoogdier) {
     .attr("class", "y axis")
     .call(d3.axisLeft(yScale))
     .attr("transform", "translate(0, 0 )"); // Create an axis component with d3.axisLeft
+
+  // cast to an integer
+  var min = parseInt(min, 10);
+
+  // generate line
+  var line = d3.line()
+    .x(function(d, i) {
+      return xScale(i + min);
+    }) // set the x values for the line generator
+    .y(function(d) {
+      return yScale(d.y);
+    }) // set the y values for the line generator
+    .curve(d3.curveMonotoneX) // apply smoothing to the line
+
 
   function make_x_gridlines() {
     return d3.axisBottom(xScale)
@@ -118,13 +128,13 @@ function makenormLine(bodem, vissentrend, vogel, zoogdier) {
     .text("Tijd (jaar)");
 
 
-    // Add Y axis label:
-    svg.append("text")
-      .attr("text-anchor", "end")
-      .attr("x", -50)
-      .attr("y", 20)
-      .text("Waarnemingen (trend)")
-      .attr("transform", "rotate(-90)");
+  // Add Y axis label:
+  svg.append("text")
+    .attr("text-anchor", "end")
+    .attr("x", -50)
+    .attr("y", 20)
+    .text("Waarnemingen (trend)")
+    .attr("transform", "rotate(-90)");
 
 
   svg

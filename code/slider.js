@@ -8,9 +8,10 @@ function makeSlider(bodem, vissentrend, vogel, zoogdier, technieken) {
     years.push(d.Jaar);
   })
 
-  // make the step slider per year, do the updateplot function on a change
+  // get the height needed for the slider
   var height = document.getElementById("bubble").clientHeight;
 
+  // make the slider variables
   var sliderStep = d3
     .sliderLeft()
     .min(d3.min(years))
@@ -20,11 +21,13 @@ function makeSlider(bodem, vissentrend, vogel, zoogdier, technieken) {
     .ticks(years.length)
     .step(1)
     .default(2016)
+    // update the circle packing chart on every xhange to the new year
     .on('onchange', val => {
       d3.select('p#value-step').text(d3.format('1')(val));
       updateCircle(bodem, vissentrend, vogel, zoogdier, val);
     });
 
+  // make the svg for the slider
   var gStep = d3
     .select('div#slider-step')
     .append('svg')
@@ -34,6 +37,7 @@ function makeSlider(bodem, vissentrend, vogel, zoogdier, technieken) {
     .attr("class", "slider")
     .attr('transform', 'translate(60,30)');
 
+  // call the slider
   gStep.call(sliderStep);
 
   d3.select('p#value-step').text(d3.format('1')(sliderStep.value()));

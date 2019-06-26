@@ -1,29 +1,42 @@
 function makeCirclePacking(bodem, vissentrend, vogel, zoogdier) {
 
-  var dieren = pickYear(bodem, vissentrend, vogel, zoogdier, '2016');
-  year = "2016"
-  var margin = 20;
+  // choosing the first year
+  var year = "2016";
+
+  // prepare the data for the chosen year.
+  var dieren = pickYear(bodem, vissentrend, vogel, zoogdier, year);
+
+  // make a margin
+  var margin = 5;
+
+  // get the diameter size from the div
   var diameter = document.getElementById("bubble").clientHeight;
 
+  // append the svg to the div
   var circPack = d3.select("#bubble")
     .append("svg")
     .attr("width", diameter)
     .attr("height", diameter)
 
+  // make the g element an place it in the middle
   g = circPack.append("g").attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
 
+  // color scaling
   var color = d3.scaleOrdinal()
     .domain([0, 1, 2])
     .range(["#012172", "0486DB", "#05ACD3"])
 
+  // vreate pack layout
   var pack = d3.pack()
     .size([diameter - margin, diameter - margin])
     .padding(2);
 
+  // make a div for the tooltip
   var div = d3.select("body").append("div")
     .attr("class", "tooltip")
     .style("opacity", 0);
 
+  // structure the data witth hierarchy function
   root = d3.hierarchy(dieren)
     .sum(function(d) {
       return d.size;
@@ -32,10 +45,12 @@ function makeCirclePacking(bodem, vissentrend, vogel, zoogdier) {
       return b.value - a.value;
     });
 
+
   var focus = root,
     nodes = pack(root).descendants(),
     view;
 
+  // append circles
   var circle = g.selectAll("circle")
     .data(nodes)
     .enter().append("circle")
@@ -45,11 +60,15 @@ function makeCirclePacking(bodem, vissentrend, vogel, zoogdier) {
     .style("fill", function(d) {
       return d.children ? color(d.depth) : null;
     })
+    // if the  click is on a small single circle: update the line chart
+    // else zoom in to the fille circle
     .on("click", function(d) {
       if (d.depth == 2) {
         updateLine([d.data.name, d.parent.data.name], bodem, vissentrend, vogel, zoogdier);
       } else if (focus !== d) zoom(d), d3.event.stopPropagation();
-    }).on("mouseover", function(d) {
+    })
+    // if the hover is over a small single circle, show the name
+    .on("mouseover", function(d) {
       if (d.depth >= 2) {
         div.transition()
           .duration(200)
@@ -57,22 +76,24 @@ function makeCirclePacking(bodem, vissentrend, vogel, zoogdier) {
         div.html(d.data.name)
           .style("left", (d3.event.pageX) + "px")
           .style("top", (d3.event.pageY - 40) + "px");
-    }})
+      }
+    })
     .on("mouseout", function(d) {
       div.transition()
         .duration(500)
         .style("opacity", 0);
     });
 
+  // append the graph desription text
   circPack.append("text")
-  .attr("class", "bigtext")
-  .style("font", "24px sans-serif")
-  .attr("text-anchor", "start")
-  .attr("x", 1)
-  .attr("y", 50)
-  .text("Trend van diersoorten in " + year + "");
+    .attr("class", "bigtext")
+    .style("font", "18px sans-serif")
+    .attr("text-anchor", "start")
+    .attr("x", 1)
+    .attr("y", 20)
+    .text("Trend van diersoorten in " + year + "");
 
-
+  // append the text for the circles
   var text = g.selectAll("text")
     .data(nodes)
     .enter().append("text")
@@ -86,35 +107,43 @@ function makeCirclePacking(bodem, vissentrend, vogel, zoogdier) {
     .style("display", function(d) {
       return d.parent === root ? "inline" : "none";
     }).text(function(d) {
-        return d.data.name;
-        }
-    ).style("font-size", function(d) {
+      return d.data.name;
+    })
+    // change text size according to size of the circles
+    .style("font-size", function(d) {
       var len = d.data.name.length;
-          var size = d.r/3;
-          size *= 10 / len;
-          size += 3;
-          return Math.round(size)+'px';
-      })
+      var size = d.r / 3;
+      size *= 10 / len;
+      size += 3;
+      return Math.round(size) + 'px';
+    })
 
+  // make a variabe for the text and circles
   var node = g.selectAll("circle,text");
 
+  // add click function and backgroud color
   circPack.style("background", "	#F0F8FF")
     .on("click", function() {
       zoom(root);
     });
 
+  // zoom to normal view
   zoomTo([root.x, root.y, root.r * 2 + margin]);
 
   function zoomTo(v) {
+    // make k-factor for sizing
     var k = diameter / v[2];
+
     view = v;
 
+    // add position to circles and text
     node.attr("transform", function(d) {
       return "translate(" + (d.x - v[0]) * k + "," + (d.y - v[1]) * k + ")";
     });
     text.attr("transform", function(d) {
       return "translate(" + (d.x - v[0]) * k + "," + (d.y - v[1]) * k + ")";
     })
+    // add radius to the circles
     circle.attr("r", function(d) {
       return d.r * k;
     });
@@ -124,6 +153,7 @@ function makeCirclePacking(bodem, vissentrend, vogel, zoogdier) {
     var focus0 = focus;
     focus = d;
 
+    // make variable for the transition
     var transition = d3.transition()
       .duration(d3.event.altKey ? 7500 : 750)
       .tween("zoom", function(d) {
@@ -133,6 +163,7 @@ function makeCirclePacking(bodem, vissentrend, vogel, zoogdier) {
         };
       });
 
+    // show all the circle texts acoording to where te zoom went to
     transition.selectAll("text").filter('.label')
       .filter(function(d) {
         return d.parent === focus || this.style.display === "inline";
@@ -152,8 +183,11 @@ function makeCirclePacking(bodem, vissentrend, vogel, zoogdier) {
 
 
 function updateCircle(bodem, vissentrend, vogel, zoogdier, year) {
+
   var margin = 20
+
   var diameter = document.getElementById("bubble").clientHeight;
+
   var dieren = pickYear(bodem, vissentrend, vogel, zoogdier, year)
 
   var color = d3.scaleOrdinal()
@@ -185,10 +219,10 @@ function updateCircle(bodem, vissentrend, vogel, zoogdier, year) {
       return d.children ? color(d.depth) : null;
     })
 
-    d3.select(".bigtext")
+  d3.select(".bigtext")
     .transition()
     .duration(500)
-    .text(year)
+    .text("Trend van diersoorten in " + year + "")
 
   var text = g.selectAll("text")
     .data(nodes)
@@ -201,15 +235,14 @@ function updateCircle(bodem, vissentrend, vogel, zoogdier, year) {
     .style("display", function(d) {
       return d.parent === root ? "inline" : "none";
     }).text(function(d) {
-        return d.data.name;
-        }
-    ).style("font-size", function(d) {
+      return d.data.name;
+    }).style("font-size", function(d) {
       var len = d.data.name.length;
-          var size = d.r/3;
-          size *= 10 / len;
-          size += 3;
-          return Math.round(size)+'px';
-      })
+      var size = d.r / 3;
+      size *= 10 / len;
+      size += 3;
+      return Math.round(size) + 'px';
+    })
 
   var node = g.selectAll("circle,text");
 
@@ -260,8 +293,6 @@ function updateCircle(bodem, vissentrend, vogel, zoogdier, year) {
   }
 }
 
-
-
 function pickYear(bodem, vissentrend, vogel, zoogdier, year) {
 
   var bodemfauna = bodem[year]
@@ -271,7 +302,7 @@ function pickYear(bodem, vissentrend, vogel, zoogdier, year) {
 
   var bf = []
 
-  try {
+
     Object.keys(bodemfauna).forEach(key => {
       if (bodemfauna[key] == null) {
         bodemfauna[key] = 0;
@@ -281,12 +312,11 @@ function pickYear(bodem, vissentrend, vogel, zoogdier, year) {
         "size": bodemfauna[key]
       })
     })
-  } catch (err) {}
+
 
   var zd = []
 
 
-  try {
     Object.keys(zoogdieren).forEach(key => {
       if (zoogdieren[key] == null) {
         zoogdieren[key] = 0;
@@ -296,11 +326,11 @@ function pickYear(bodem, vissentrend, vogel, zoogdier, year) {
         "size": zoogdieren[key]
       })
     })
-  } catch (err) {}
+
 
   var vg = []
 
-  try {
+
     Object.keys(vogels).forEach(key => {
       if (vogels[key] == null) {
         vogels[key] = 0;
@@ -310,11 +340,10 @@ function pickYear(bodem, vissentrend, vogel, zoogdier, year) {
         "size": vogels[key]
       })
     })
-  } catch (err) {}
 
 
   var vs = []
-  try {
+
     Object.keys(vissen).forEach(key => {
       if (vissen[key] == null) {
         vissen[key] = 0;
@@ -324,7 +353,6 @@ function pickYear(bodem, vissentrend, vogel, zoogdier, year) {
         "size": vissen[key]
       })
     })
-  } catch (err) {}
 
 
   var dieren = {

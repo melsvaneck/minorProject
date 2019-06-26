@@ -88,6 +88,10 @@ div.tooltip {
   text-anchor: middle;
   text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
 }
+.bigtext{
+  font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
+}
 .line {
  fill: none;
  stroke: steelblue;
