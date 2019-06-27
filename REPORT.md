@@ -66,15 +66,29 @@ Op de cirkels van de diersoorten zit een "onclick" functie die de linechart upda
 Deze functie zal worden aangeroepen door de slider te verplaatsen of door op een jaar te klikken op de stacked area chart. bij het aanroepen zal er met het nieuw geselecteerde jaar een nieuwe chart met nieuwe waardes worden aangemaakt.
 
 ### lineChart.js
-De lineChart bestaat uit twee functies, een om de line chart aan te maken (makenormLine) en eentje om de chart up te daten (updateLine).
+De lineChart bestaat uit twee functies, een om de datain het juiste format te zetten(makeLineData), een functie om line chart aan te maken (makenormLine), en eentje om de chart up te daten (updateLine).
+
+#### makeLineData
+in de functie makeLineData zal er aan de hand van de geselecteerde diersoort data worden opgehaald over de trend van deze diersoort over de jaren waarin er data beschikbaar is van deze diersoort en vervolgens data in het juiste format terugsturen.
 
 #### makenormLine
+Hier zullen als eerst de hoogte en breedte opgehaald worden van een <div> element die is aangemaakt in de html van de pagina, hiermee zal de grote van het <svg> element worden bepaald.
 
+vervolgens zal er met de functie makeLineData() de juiste data worden opgehaald voor het maken van de lijn. er is voor gekozen om als eerst de data van de noordse stormvogel te laten zien.
 
+na het verkrijgen van de juiste data zullen aan de hand hiervan de x en y scaling worden gemaakt, de x scaling zal alle jaren van waarnemingen bevatten en de y scaling zal van 0 tot de hoogste waarde van waarnemingen bevatten.Vervolgens zullen deze worden aangeroepen.Hetzelfde zal met de gridlijnen gebeuren.
+
+vervolgens zal er een lijn worden gegenereerd aan de hand van de data door middel van de functie d3.line().Deze gemaakte lijn word vervolgens ook toegevoegd aan de chart.Na het toevoegen van de lijn zal er voor elk jaar op de lijn een puntje worden toegevoegd om het aflezen makkelijker te maken.
+
+ook is er een functie toegevoegd die de positie van de muis volgt en aan de hand van de muispositie de waarde op de lijn op dat punt laat zien.
 
 #### updateLine
+deze functie zal aan de hand van een geselcteerde diersoord de data aanpassen en de assen en lijn updaten.
 
+## Proces en keuzes
 
+![GitHub Logo](/images/voorstel2.png)
+![eindpagina](/images/eindversie.png)
 
 Create a report (REPORT.md), based on your design document, containing important decisions that you’ve made, e.g. where you changed your mind during the past weeks. This is how you show the reviewer that you actually understand what you have done.
 
