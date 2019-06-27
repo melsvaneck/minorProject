@@ -1,5 +1,12 @@
 # REPORT
 
+## De website
+
+![eindpagina](/images/navbar.png)
+
+Naast visualisaties is er ook info te vinden  over verschillende soorten visserij en is er een homepage die een introductie geeft over waarom deze visualisaties gemaakt zijn. Op het knopje info is mijn studentnummer, e-mail en naam te vinden.
+
+
 ## De visualisaties
 
 ![eindpagina](/images/eindversie.png)
