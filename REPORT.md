@@ -93,3 +93,8 @@ aan het eind van de 2e week was de circle packing chart (deels) gemaakt en hier 
 
 ![oldbarchart](/images/bubble.PNG)
 ![oldbarchart](/images/circlepack.PNG)
+
+## keuze onderbouwing
+Als ik kijk naar mijn gemaakte keuzes voor de line chart en de circle packing chart denk ik dat ik hier goed aan gedaan heb, zonder deze veranderingen had de visualisatie er een stuk minder overzichtelijk uitzien. Als ik meer tijd had gehad had ik echter zeker nog gezocht naar een goede manier om meerdere lijnen tegenover elkaar te plotten
+
+Met de 4e visualisatie had ik graag nog wat willen doen omdat dit een extra dimensie zou geven aan de data en niet allen dingen over de fauna zou laten zien. Het probleem hiermee was dat het moeilijk was om een juiste visualisatie-soort te vinden die bij deze data zou passen dus al met al heb ik er goed aan gedaan om ervoor te kiezen om meer tijd te steken in de kwaliteit van de rest aan de visualisaties. Met meer tijd had hier zeker een extra visualisatie bij gekomen.
