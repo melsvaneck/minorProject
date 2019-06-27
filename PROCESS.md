@@ -87,7 +87,6 @@ ook nog extra infopagina's gemaakt.
 ![mouse](/images/text.PNG)
 
 
-
 # day 15  (20-6-2019)
 Knoppen toegevoegd aan stacked area chart die areas kunnen verbergen.
 ook nieuwe html-paginas toegevoegd over visserij visserijtechnieken.

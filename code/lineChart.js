@@ -169,7 +169,7 @@ function makenormLine(bodem, vissentrend, vogel, zoogdier) {
     })
     .on("mouseout", function() {});
 
-  // reform the data for the mousetracker function
+
   var values = [];
 
   // parse the data and push it to the array
@@ -180,24 +180,27 @@ function makenormLine(bodem, vissentrend, vogel, zoogdier) {
     })
   });
 
+  // reform the data to an array of objects for the mousetracker function
   var trend = [{
     name: "lineone",
     values: values
   }]
 
-
+  // append a group for the mouse tracking
   var mouseG = normLine.append("g")
     .attr("class", "mouse-over-effects")
 
-
-  mouseG.append("path") // this is the black vertical line to follow mouse
+  // this is the black vertical line to follow mouse
+  mouseG.append("path")
     .attr("class", "mouse-line")
     .style("stroke", "black")
     .style("stroke-width", "1px")
     .style("opacity", "0");
 
+  // get the line that has been made
   var lines = document.getElementsByClassName('lijn');
 
+  
   var mousePerLine = mouseG.selectAll('.mouse-per-line')
     .data(trend)
     .enter()
