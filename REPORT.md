@@ -63,13 +63,13 @@ ook is er een functie toegevoegd die de positie van de muis volgt en aan de hand
 deze functie zal aan de hand van een geselecteerde diersoort de data aanpassen en de assen en lijn updaten.
 
 ## Proces en keuzes
-Hierin zullen een aantal veranderingen worden toegelicht van het eindproduct ten opzichte van het voorstel
+####Hierin zullen een aantal veranderingen worden toegelicht van het eindproduct ten opzichte van het voorstel
 
 ![GitHub Logo](/images/voorstel2.png)
-het voorstel van week 1
+#### het voorstel van week 1
 
 ![eindpagina](/images/eindversie.png)
-het eindproduct
+#### het eindproduct
 
 ### 4e visualisatie
 Het voorstel (bovenste afbeelding) bestaat uit een viertal visualisaties, een stacked area chart, een line chart, een circle packing chart en een stacked bar chart, het eindproduct (onderste afbeelding) bestaat uit "slechts" 3 visualisaties zoals eerder genoemd. Hieronder staat een uitleg wat hier de reden van is geworden.
