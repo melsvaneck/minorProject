@@ -93,20 +93,18 @@ het voorstel van week 1
 ![eindpagina](/images/eindversie.png)
 het eindproduct
 
-### voorstel en het eindproduct
-Het voorstel bestaat uit een viertal visualisaties, een stacked area chart, een line chart, een circle packing chart en een stacked bar chart, het eindproduct bestaat uit 3 visualisaties zoals eerder genoemd. Hiervoor zijn meerdere redenen die hieronder zullen worden uitgelegd.
+### 4e visualisatie
+Het voorstel (bovenste afbeelding) bestaat uit een viertal visualisaties, een stacked area chart, een line chart, een circle packing chart en een stacked bar chart, het eindproduct (onderste afbeelding) bestaat uit "slechts" 3 visualisaties zoals eerder genoemd. Hieronder staat een uitleg wat hier de reden van is geworden.
 
-
-De 4e visualisatie zou een barchart worden van vissoorten waarop gevist word, hiermee hoopte ik een beeld te krijgen over de invloed op niet alleen de fauna maar ook op de vis waarop gevist word. Tijdens het maken van het voorstel was nog niet geheel duidelijk hoe de volledige dataset van deze chart eruit zag, hierdoor kwam ik er tijdens het maken van de stackedbar chart achter dat er verschillen in aantallen van diersoorten zodaning groot waren dat er in de visualisatie niet meer duidelijk te zien was wat er met de andere diersoorten gebeurde.
+De 4e visualisatie zou een stacked barchart worden van vissoorten waarop gevist word (afbeelding onder de text), hiermee hoopte ik een beeld te krijgen over de invloed op niet alleen de fauna maar ook op de vis waarop gevist word. Tijdens het maken van het voorstel was nog niet geheel duidelijk hoe de volledige dataset van deze chart eruit zag, hierdoor kwam ik er tijdens het maken van de stackedbar chart achter dat er verschillen in aantallen van diersoorten zodaning groot waren dat er in de visualisatie niet meer duidelijk te zien was wat er met de andere diersoorten gebeurde.Toen heb ik er voor gekozen om er een sunburst chart van te maken omdat ik hiermee mijn doel van het duidelijk visualiseren eventueel wel zou behalen, echter kwam ik er al snel achter dat het veerstandiger was om er eerst voor te zorgen dat alle andere visualisaties goed op orde zijn. Dit kostte meer tijd dan verwacht dus heb ik er voor gekozen om het bij 3 visualisaties te houden om hiermee de kwaliteit te kunnen waarborgen.
 
 ![oldbarchart](/images/oldbar.PNG)
 
+### Line chart veranderingen
+In het voorstel staat dat de line chart zodanig kan worden geupdate dat er meerdere lijnen van diersoorten werden laten zien. Hier is uiteindelijk van afgeweken omdat er bij sommige diersoorten gewoonweg te grootte verschillen zijn in waarneming (van 10000 tot 20) waardoor het vergelijken van deze diersoorten niet goed zou verlopen. Het had eventueel gekund door het updaten van de y-as onder bepaalde voorwaarden maar hiervoor was niet genoeg tijd.
 
 
-
-
-
-
+### keuzes in het proces
 
 
 
