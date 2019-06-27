@@ -80,3 +80,9 @@ De 4e visualisatie zou een stacked barchart worden van vissoorten waarop gevist 
 
 ### Line chart veranderingen
 In het voorstel staat dat de line chart zodanig kan worden geüpdatet dat er meerdere lijnen van diersoorten werden laten zien. Hier is uiteindelijk van afgeweken omdat er bij sommige diersoorten gewoonweg te grootte verschillen zijn in waarneming (van 10000 tot 20) waardoor het vergelijken van deze diersoorten niet goed zou verlopen. Het had eventueel gekund door het updaten van de y-as onder bepaalde voorwaarden maar hiervoor was niet genoeg tijd.
+
+### bubble chart?
+aan het eind van de 2e week was de circle packing chart (deels) gemaakt en hier heb ik toen heel lang geprobeerd click functies aan toe te voegen, dit was mij niet gelukt dus had ik de overweging gemaakt om een bubble chart te maken. dit leek me wat makkelijker alleen werd de visualisatie er toch wat minder duidelijk door omdat ik de diersoorten niet bij elkaar in één groep kreeg. Gelukkig kon ik in week 3 met wat hulp alsnog de juiste functies kwijt in mijn circle packing chart en was dit alsnog gelukt.
+
+![oldbarchart](/images/bubble.PNG)
+![oldbarchart](/images/circlepack.PNG)
