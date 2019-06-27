@@ -15,6 +15,37 @@ Deze chart laat de trend van diersoorten zien van het geselecteerde jaar, hoe gr
 ### De line chart (Linksonder)
 De line chart laat de trend in waarneminge van een geselcteerde diersoort zien. Je kan met je muis over de chart heen om de waardes van het verloop te zien.
 
+## code Design
+De code bestaat uit een aantal verchillende scripts:
+
+#### convert.py
+Dit script is gebruikt om alle csv bestanden om te zetten naar JSON bestanden zodat de dat goed bruikbaar is in javascript en D3.
+
+#### Main.js
+Hierin wordt alle data opgehaald door middel van een promise, met deze data kunnen de functies aangeroepen worden die de visualisaties maken.
+
+#### stackedLine.js
+Hierin zitten 2 functies, een voor het maken van de stacked area chart (makeStackLine) en eentje voor het toevoegen of verwijderen van een area (updateStackLine).
+
+##### makeStackLine
+Hier zullen als eerst de hoogte en breedte opgehaald worden van een <div> element die is aangemaakt in de html van de pagina, hiermee zal de grote van het <svg> element worden bepaald.
+
+de data die van main.js afkomt zal worden omgezet naar bruikbare data door middel van de functie d3.stack. hiermee kunnen de areas worden gemaakt voor de chart.
+
+vervolgens zal er aan de hand van de data die van main.js afkomt en x en y scaling worden gemaakt, x-scaling voor het totaal aantal pk-dagen en de y-scaling voor het aantal jaren, voor de y-scaling is er nog voor gekozen om het maximale getal omhoof af te ronden zodat het hoogste punt van de area ook nog duidelijk af te lezen is.
+
+Met deze scaling kunnen nu allebij de assen worden aangemaakt en gecalled, hetzelfde zal gebeuren met de gridlines.
+
+Vervolgens zullen er van de data per visserijtechniek verschillende "areas" worden gemaakt met de d3.area() functie,deze areas zullen als paths worden toegevoegt aan de chart en vervolgens worden gevuld met kleur aan de hand van de color scaling. ook is er een legenda aangemaakt van checkboxes van de technieken een hihglight functie als er over deze legenda wordt gehoverd.
+
+
+##### updateStackLine
+Bij het aanmaken van de legenda is er een "onclick" functie meegegeven aan elk , deze functi
+
+
+#### circlePacking.js
+#### lineChart.js
+#### slider.js
 
 
 
