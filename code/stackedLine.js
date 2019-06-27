@@ -26,15 +26,15 @@ function makeStackLine(bodem, vissentrend, vogel, zoogdier, data) {
 
 
   // get the first object of the array
-  var object = deepClone[0]
+  var object = deepClone[0];
 
   // make an empty array to put the keys in
-  var keys = []
+  var keys = [];
 
   // iterate over the object and  push the names in the array
   for (var property in object) {
     if (property != 'Jaar') {
-      keys.push(property)
+      keys.push(property);
     }
   }
 
@@ -46,7 +46,7 @@ function makeStackLine(bodem, vissentrend, vogel, zoogdier, data) {
   //stack the data
   var stackedData = d3.stack()
     .keys(keys)
-    (deepClone)
+    (deepClone);
 
 
   // Add X scaling
@@ -103,6 +103,13 @@ function makeStackLine(bodem, vissentrend, vogel, zoogdier, data) {
     .attr("y", height - 35)
     .text("Tijd (jaar)");
 
+  // update circle packing if clicking on a year
+  stackedLine.selectAll(".x.axis .tick")
+  .on("click", function(d) {
+    updateCircle(bodem, vissentrend, vogel, zoogdier, d);
+  });
+
+
   // Add Y axis label:
   stackedLine.append("text")
     .attr("text-anchor", "end")
@@ -124,13 +131,13 @@ function makeStackLine(bodem, vissentrend, vogel, zoogdier, data) {
   // function to make the x-gridlines (hard coded because it only occurs once)
   function make_x_gridlines() {
     return d3.axisBottom(xScale)
-      .ticks(xTicks)
+      .ticks(xTicks);
   }
 
   // function to make the y-gridlines (hard coded because it only occurs once)
   function make_y_gridlines() {
     return d3.axisLeft(yScale)
-      .ticks(yTicks)
+      .ticks(yTicks);
   }
 
   // append the X gridlines
@@ -140,7 +147,7 @@ function makeStackLine(bodem, vissentrend, vogel, zoogdier, data) {
     .call(make_x_gridlines()
       .tickSize(-height + margin.top + margin.bottom)
       .tickFormat("")
-    ).style("color", "white")
+    ).style("color", "white");
 
   // append the Y gridlines
   stackedLine.append("g")
@@ -149,7 +156,7 @@ function makeStackLine(bodem, vissentrend, vogel, zoogdier, data) {
     .call(make_y_gridlines()
       .tickSize(margin.right + margin.left - width)
       .tickFormat("")
-    )
+    );
 
   // Add a clipPath: everything out of this area won't be drawn.
   var clip = stackedLine.append("defs").append("stackedLine:clipPath")
@@ -163,7 +170,7 @@ function makeStackLine(bodem, vissentrend, vogel, zoogdier, data) {
 
   // Create the scatter variable: where both the circles and the brush take place
   var areaChart = stackedLine.append('g')
-    .attr("clip-path", "url(#clip)")
+    .attr("clip-path", "url(#clip)");
 
   // Area generator
   var area = d3.area()
@@ -185,7 +192,7 @@ function makeStackLine(bodem, vissentrend, vogel, zoogdier, data) {
     .enter()
     .append("path")
     .attr("class", function(d) {
-      return "myArea " + d.key
+      return "myArea " + d.key;
     })
     .style("fill", function(d) {
       return color(d.key);
@@ -197,20 +204,20 @@ function makeStackLine(bodem, vissentrend, vogel, zoogdier, data) {
 
   function idled() {
     idleTimeout = null;
-  };
+  }
 
 
   // What to do when one group is hovered
   var highlight = function(d) {
     // reduce opacity of all groups
-    d3.selectAll(".myArea").style("opacity", .3)
+    d3.selectAll(".myArea").style("opacity", .3);
     // expect the one that is hovered
-    d3.select("." + d).style("opacity", 1)
+    d3.select("." + d).style("opacity", 1);
   };
 
   // And when it is not hovered anymore
   var noHighlight = function(d) {
-    d3.selectAll(".myArea").style("opacity", .8)
+    d3.selectAll(".myArea").style("opacity", .8);
   };
 
 
@@ -224,7 +231,7 @@ function makeStackLine(bodem, vissentrend, vogel, zoogdier, data) {
     .attr("width", 120)
     .attr("height", 125)
     .style("fill", "	#F0F8FF")
-    .style("opacity", "0.9")
+    .style("opacity", "0.9");
 
   // boolean oprator for each name (used in click function)
   var toggleSelected = {
@@ -234,7 +241,7 @@ function makeStackLine(bodem, vissentrend, vogel, zoogdier, data) {
     Sumwing: true,
     Garnalen: true,
     Diversen: true
-  }
+  };
 
   // Add one rectangle in the legend for each name.(checkbox)
   stackedLine.selectAll("myrect")
@@ -243,19 +250,19 @@ function makeStackLine(bodem, vissentrend, vogel, zoogdier, data) {
     .append("rect")
     .attr("x", (width * 0.80))
     .attr("y", function(d, i) {
-      return 30 + i * (size + 5)
+      return 30 + i * (size + 5);
     }) // 100 is where the first dot appears. 25 is the distance between dots
     .attr("width", size)
     .attr("height", size)
     .attr("class", function(d) {
-      return "rect" + d
+      return "rect" + d;
     })
     .attr("stroke-width", "3")
     .attr("stroke", function(d) {
-      return color(d)
+      return color(d);
     })
     .style("fill", function(d) {
-      return color(d)
+      return color(d);
     })
     .on("mouseover", highlight)
     .on("mouseleave", noHighlight)
@@ -263,13 +270,13 @@ function makeStackLine(bodem, vissentrend, vogel, zoogdier, data) {
     .on("click", function(d) {
       if (toggleSelected[d] == true) {
         d3.select(this).style("fill", "white");
-        updateStackLine(deepClone, keys, d, data, toggleSelected[d], xScale, yScale)
+        updateStackLine(deepClone, keys, d, data, toggleSelected[d], xScale, yScale);
         toggleSelected[d] = false;
       } else {
         d3.select(this).style("fill", function(d) {
-          return color(d)
+          return color(d);
         });
-        updateStackLine(deepClone, keys, d, data, toggleSelected[d], xScale, yScale)
+        updateStackLine(deepClone, keys, d, data, toggleSelected[d], xScale, yScale);
         toggleSelected[d] = true;
       }
     });
@@ -282,14 +289,14 @@ function makeStackLine(bodem, vissentrend, vogel, zoogdier, data) {
     .append("text")
     .attr("x", (width * 0.8) + size * 1.2)
     .attr("y", function(d, i) {
-      return 30 + i * (size + 5) + (size / 2)
+      return 30 + i * (size + 5) + (size / 2);
     }) // 100 is where the first dot appears. 25 is the distance between dots
     .style("fill", function(d) {
-      return color(d)
+      return color(d);
     })
     .style("opacity", "1.5")
     .text(function(d) {
-      return d
+      return d;
     })
     .attr("text-anchor", "left")
     .style("alignment-baseline", "middle")
@@ -299,18 +306,18 @@ function makeStackLine(bodem, vissentrend, vogel, zoogdier, data) {
     .on("click", function(d) {
       if (toggleSelected[d] == true) {
         d3.select(".rect" + d + "").style("fill", "white");
-        updateStackLine(deepClone, keys, d, data, toggleSelected[d], xScale, yScale)
+        updateStackLine(deepClone, keys, d, data, toggleSelected[d], xScale, yScale);
         toggleSelected[d] = false;
       } else {
         d3.select(".rect" + d).style("fill", function(d) {
-          return color(d)
+          return color(d);
         });
-        updateStackLine(deepClone, keys, d, data, toggleSelected[d], xScale, yScale)
+        updateStackLine(deepClone, keys, d, data, toggleSelected[d], xScale, yScale);
         toggleSelected[d] = true;
       }
     });
 
-};
+}
 
 // function for adding or removing areas
 function updateStackLine(temp, keys, name, data, mode, xScale, yScale) {
@@ -333,27 +340,27 @@ function updateStackLine(temp, keys, name, data, mode, xScale, yScale) {
     // if true make the value of the area 0 thus making it invisible
     temp.forEach(function(d) {
       d[name] = 0;
-    })
+    });
   }
 
   if (mode == false) {
     // if false make it the old values of the origonal data again thus making it visible
     temp.forEach(function(d, i) {
       d[name] = data[i][name];
-    })
+    });
   }
 
   //stack the data
   var stackedData = d3.stack()
     .keys(keys)
-    (temp)
+    (temp);
 
   // make the variable vor the div again
-  var stackedLine = d3.select("#stackline")
+  var stackedLine = d3.select("#stackline");
 
   // append clip path again
   var areaChart = stackedLine.append('g')
-    .attr("clip-path", "url(#clip)")
+    .attr("clip-path", "url(#clip)");
 
   // Area generator
   var area = d3.area()
@@ -365,7 +372,7 @@ function updateStackLine(temp, keys, name, data, mode, xScale, yScale) {
     })
     .y1(function(d) {
       return yScale(d[1]);
-    }).curve(d3.curveCatmullRom.alpha(1)) // apply smoothing to the line
+    }).curve(d3.curveCatmullRom.alpha(1)); // apply smoothing to the line
 
   // append the new area
   d3.selectAll(".myArea")

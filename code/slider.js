@@ -1,12 +1,12 @@
 function makeSlider(bodem, vissentrend, vogel, zoogdier, technieken) {
 
   // make an empty array for all the years
-  var years = []
+  var years = [];
 
   // get all the years from vistechnieken so the slider has the same amount of years
   technieken.forEach(function(d) {
     years.push(d.Jaar);
-  })
+  });
 
   // get the height needed for the slider
   var height = document.getElementById("bubble").clientHeight;

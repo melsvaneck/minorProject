@@ -73,7 +73,7 @@ hele code aangepast door functies overal voor te maken en verschillende programm
 
 ![mouse](/images/mouseover.png)
 
-# day 14  (20-6-2019)
+# day 14  (21-6-2019)
 data gevonden over eerdere jaren visserijtechnieken
 <!-- http://edepot.wur.nl/284011 -->
 ![mouse](/images/extradata.PNG)
@@ -94,3 +94,11 @@ Geen tijd meer voor de 4e chart. dus die ga ik ook niet meer maken. in plaats da
 
 ![mouse](/images/area1.PNG)
 ![mouse](/images/area2.PNG)
+
+# day 16  (25-6-2019)
+Alle code doorgespit en netjes gemaakt.
+
+# day 17  (26-6-2019)
+Alle files controleren voor het inleveren van vanmiddag
+
+# day 18 (27-6-2019)
