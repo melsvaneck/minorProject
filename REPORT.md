@@ -45,27 +45,39 @@ Bij het aanmaken van de legenda is er een "onclick" functie meegegeven aan elke 
 Hierna word de chart geupdate en zullen de areas worden weeggehaald of weer worden teruggezet.
 
 ### circlePacking.js
-Hier zal als eerst de diameter opgehaald worden van een <div> element die is aangemaakt in de html van de pagina, hiermee zal de grote van het <svg> element worden bepaald.
+dir programma bestaat uit 3 functies, een voor het maken van de circle packing chart (makeCirclepacking), een voor het updaten van de circle packing chart (updateCircle) en een eentje voor het preparen van de data voor een circle packing chart(pickYear).
 
 
+#### pickYear
+Deze functie zal aan de hand van een geselcteerd jaar alle data ophalen van dat jaar en het omzetten naar een bruikbare heirargische data (flare.JSON).
 
+#### makeCirclepacking
+de data die van main.js afkomt zal worden omgezet naar bruikbare data door middel van de functie pickYear(). Er zal als standaard jaar het jaar 2016 geselcteerd worden.  
 
-de data die van main.js afkomt zal worden omgezet naar bruikbare data door middel van de functie d3.stack. hiermee kunnen de areas worden gemaakt voor de chart.
+Vervolgens wordt de diameter opgehaald van een <div> element die is aangemaakt in de html van de pagina, hiermee zal de grote van het <svg> element worden bepaald.
 
+vervolgens zal er met de functie d3.hierarchy() en d3.pack() de juiste datastructuur worden aangemaakt om de cirkels mee te defineren.
 
+met deze aangepasta datastructuur kunnen de circles en de text die bij de circles hoort worden aangemaakt.Na het aanmaken van de cirkels kan er met de zoom functie de maten en locaties van de cirkels worden gedefineerd en zo word de circle packing chart gevisualiseerd.
+
+Op de cirkels van de diersoorten zit een "onclick" functie die de linechart update.
+
+#### updateCircle
+Deze functie zal worden aangeroepen door de slider te verplaatsen of door op een jaar te klikken op de stacked area chart. bij het aanroepen zal er met het nieuw geselecteerde jaar een nieuwe chart met nieuwe waardes worden aangemaakt.
 
 ### lineChart.js
-### slider.js
+De lineChart bestaat uit twee functies, een om de line chart aan te maken (makenormLine) en eentje om de chart up te daten (updateLine).
+
+#### makenormLine
 
 
+
+#### updateLine
 
 
 
 Create a report (REPORT.md), based on your design document, containing important decisions that you’ve made, e.g. where you changed your mind during the past weeks. This is how you show the reviewer that you actually understand what you have done.
 
-Start with a short description of your application (like in the README.md, but very short, including a single screen shot).
-
-Clearly describe the technical design: how is the functionality implemented in your code? This should be like your DESIGN.md but updated to reflect the final application. First, give a high level overview, which helps us navigate and understand the total of your code (which components are there?). Second, go into detail, and describe the modules/classes (apps) files/functions (data) and how they relate.
 
 Clearly describe challenges that your have met during development. Document all important changes that your have made with regard to your design document (from the PROCESS.md). Here, we can see how much you have learned in the past month.
 
