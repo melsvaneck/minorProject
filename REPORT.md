@@ -104,17 +104,6 @@ De 4e visualisatie zou een stacked barchart worden van vissoorten waarop gevist 
 In het voorstel staat dat de line chart zodanig kan worden geupdate dat er meerdere lijnen van diersoorten werden laten zien. Hier is uiteindelijk van afgeweken omdat er bij sommige diersoorten gewoonweg te grootte verschillen zijn in waarneming (van 10000 tot 20) waardoor het vergelijken van deze diersoorten niet goed zou verlopen. Het had eventueel gekund door het updaten van de y-as onder bepaalde voorwaarden maar hiervoor was niet genoeg tijd.
 
 
-### keuzes in het proces
-
-
-
-
-
-Create a report (REPORT.md), based on your design document, containing important decisions that you’ve made, e.g. where you changed your mind during the past weeks. This is how you show the reviewer that you actually understand what you have done.
-
-
-Clearly describe challenges that your have met during development. Document all important changes that your have made with regard to your design document (from the PROCESS.md). Here, we can see how much you have learned in the past month.
-
-Defend your decisions by writing an argument of a most a single paragraph. Why was it good to do it different than you thought before? Are there trade-offs for your current solution? In an ideal world, given much more time, would you choose another solution?
-
-Make sure the document is complete and reflects the final state of the application. The document will be an important part of your grade.
+### bubble chart of circle packing
+![oldbarchart](/images/bubble.PNG)
+![oldbarchart](/images/circlepack.PNG)
