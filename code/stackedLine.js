@@ -1,3 +1,8 @@
+// Name: Mels van eck
+// Student number 500757609
+// This program makes an interactive stacked areaChart using the d3 library
+
+
 function makeStackLine(bodem, vissentrend, vogel, zoogdier, data) {
 
   // make the margins for the chart
@@ -73,7 +78,7 @@ function makeStackLine(bodem, vissentrend, vogel, zoogdier, data) {
 
   // make variable for the y-axis
   var yAxis = d3.axisLeft()
-  .scale(yScale);
+    .scale(yScale);
 
   // append the y-axis
   stackedLine.append("g")
@@ -105,9 +110,9 @@ function makeStackLine(bodem, vissentrend, vogel, zoogdier, data) {
 
   // update circle packing if clicking on a year
   stackedLine.selectAll(".x.axis .tick")
-  .on("click", function(d) {
-    updateCircle(bodem, vissentrend, vogel, zoogdier, d);
-  });
+    .on("click", function(d) {
+      updateCircle(bodem, vissentrend, vogel, zoogdier, d);
+    });
 
 
   // Add Y axis label:

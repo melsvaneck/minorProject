@@ -1,3 +1,8 @@
+// Name: Mels van eck
+// Student number 500757609
+// This program makes an updatable line chart using the d3 library
+
+
 function makenormLine(bodem, vissentrend, vogel, zoogdier) {
 
   // make the margins
@@ -329,7 +334,7 @@ function updateLine(data, bodem, vissentrend, vogel, zoogdier) {
     }) // set the y values for the line generator
     .curve(d3.curveMonotoneX); // apply smoothing to the line
 
-   // gridlines in x axis function
+  // gridlines in x axis function
   function make_x_gridlines() {
     return d3.axisBottom(xScale)
       .ticks((d3.max(dataset, function(d) {

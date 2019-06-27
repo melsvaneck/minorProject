@@ -1,3 +1,8 @@
+// Name: Mels van eck
+// Student number 500757609
+// This program makes a slider using the d3 library
+
+
 function makeSlider(bodem, vissentrend, vogel, zoogdier, technieken) {
 
   // make an empty array for all the years

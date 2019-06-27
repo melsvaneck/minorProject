@@ -6,11 +6,14 @@
 
 In de visualisaties zijn 3 charts te zien, een stacked area chart, een circle packing chart en een line chart.
 
-### De stacked Area chart (linksboven)
+### De stacked Area chart (Linksboven)
 Deze chart laat de inzet van visserijtechnieken zien van 1991 tot 2016 in miljoen pk-dagen. Door op de boxes op de legenda te klikken kan je area's weghalen en toevoegen, klik je op een jaar dan wordt de circle packing chart ge-update.
 
-### De circle packing chart
+### De circle packing chart (Rechts)
 Deze chart laat de trend van diersoorten zien van het geselecteerde jaar, hoe groter de cirkel, hoe meer waarnemingen. Als je op een diersoort klikt zoomt hij in op de geselcteerde soort om de namen van deze dieren te zien. klik op een diersoort en de line chart zal de trend in waarnemingen laten zien van deze soort. Ook kan de circle packing chart worden geupdate door middel van de slider helemaal rechts in het scherm.
+
+### De line chart (Linksonder)
+De line chart laat de trend in waarneminge van een geselcteerde diersoort zien. Je kan met je muis over de chart heen om de waardes van het verloop te zien.
 
 
 

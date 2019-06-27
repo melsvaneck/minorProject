@@ -1,3 +1,8 @@
+// Name: Mels van eck
+// Student number 500757609
+// This program makes an updatable circle packing chart using the d3 library
+
+
 function makeCirclePacking(bodem, vissentrend, vogel, zoogdier) {
 
   // choosing the first year
@@ -19,7 +24,7 @@ function makeCirclePacking(bodem, vissentrend, vogel, zoogdier) {
     .attr("height", diameter);
 
   // make the g element an place it in the middle
-   g = circPack.append("g").attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
+  g = circPack.append("g").attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
 
   // color scaling
   var color = d3.scaleOrdinal()
@@ -341,7 +346,7 @@ function pickYear(bodem, vissentrend, vogel, zoogdier, year) {
     });
   });
 
-// add all the arrays together to one usable dataset
+  // add all the arrays together to one usable dataset
   var dieren = {
     "name": "diersoorten",
     'children': [{
