@@ -83,12 +83,34 @@ vervolgens zal er een lijn worden gegenereerd aan de hand van de data door midde
 ook is er een functie toegevoegd die de positie van de muis volgt en aan de hand van de muispositie de waarde op de lijn op dat punt laat zien.
 
 #### updateLine
-deze functie zal aan de hand van een geselcteerde diersoord de data aanpassen en de assen en lijn updaten.
+deze functie zal aan de hand van een geselcteerde diersoort de data aanpassen en de assen en lijn updaten.
 
 ## Proces en keuzes
 
 ![GitHub Logo](/images/voorstel2.png)
+het voorstel van week 1
+
 ![eindpagina](/images/eindversie.png)
+het eindproduct
+
+### voorstel en het eindproduct
+Het voorstel bestaat uit een viertal visualisaties, een stacked area chart, een line chart, een circle packing chart en een stacked bar chart, het eindproduct bestaat uit 3 visualisaties zoals eerder genoemd. Hiervoor zijn meerdere redenen die hieronder zullen worden uitgelegd.
+
+
+De 4e visualisatie zou een barchart worden van vissoorten waarop gevist word, hiermee hoopte ik een beeld te krijgen over de invloed op niet alleen de fauna maar ook op de vis waarop gevist word. Tijdens het maken van het voorstel was nog niet geheel duidelijk hoe de volledige dataset van deze chart eruit zag, hierdoor kwam ik er tijdens het maken van de stackedbar chart achter dat er verschillen in aantallen van diersoorten zodaning groot waren dat er in de visualisatie niet meer duidelijk te zien was wat er met de andere diersoorten gebeurde.
+
+![oldbarchart](/images/oldbar.PNG)
+
+
+
+
+
+
+
+
+
+
+
 
 Create a report (REPORT.md), based on your design document, containing important decisions that you’ve made, e.g. where you changed your mind during the past weeks. This is how you show the reviewer that you actually understand what you have done.
 
