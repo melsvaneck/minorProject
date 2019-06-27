@@ -18,16 +18,16 @@ De line chart laat de trend in waarneminge van een geselcteerde diersoort zien. 
 ## code Design
 De code bestaat uit een aantal verchillende scripts:
 
-#### convert.py
+### convert.py
 Dit script is gebruikt om alle csv bestanden om te zetten naar JSON bestanden zodat de dat goed bruikbaar is in javascript en D3.
 
-#### Main.js
+### Main.js
 Hierin wordt alle data opgehaald door middel van een promise, met deze data kunnen de functies aangeroepen worden die de visualisaties maken.
 
-#### stackedLine.js
+### stackedLine.js
 Hierin zitten 2 functies, een voor het maken van de stacked area chart (makeStackLine) en eentje voor het toevoegen of verwijderen van een area (updateStackLine).
 
-##### makeStackLine
+#### makeStackLine
 Hier zullen als eerst de hoogte en breedte opgehaald worden van een <div> element die is aangemaakt in de html van de pagina, hiermee zal de grote van het <svg> element worden bepaald.
 
 de data die van main.js afkomt zal worden omgezet naar bruikbare data door middel van de functie d3.stack. hiermee kunnen de areas worden gemaakt voor de chart.
@@ -39,13 +39,23 @@ Met deze scaling kunnen nu allebij de assen worden aangemaakt en gecalled, hetze
 Vervolgens zullen er van de data per visserijtechniek verschillende "areas" worden gemaakt met de d3.area() functie,deze areas zullen als paths worden toegevoegt aan de chart en vervolgens worden gevuld met kleur aan de hand van de color scaling. ook is er een legenda aangemaakt van checkboxes van de technieken een hihglight functie als er over deze legenda wordt gehoverd.
 
 
-##### updateStackLine
-Bij het aanmaken van de legenda is er een "onclick" functie meegegeven aan elk , deze functi
+#### updateStackLine
+Bij het aanmaken van de legenda is er een "onclick" functie meegegeven aan elke checkbox, als deze wordt aangeklikt zet hij de waarde van de checkbox op true of false (aan de hand van zijn eerdere staat). vervolgens zal deze boolean ook meegegeven worden aan de update functie. Bij een true is de checkbox aangeklikt en zullen alle waardes van de geselcteerde techniek worden omgezet naar nul. bij een false zullen alle waardes teruggezet worden naar zijn originele waardes.
+
+Hierna word de chart geupdate en zullen de areas worden weeggehaald of weer worden teruggezet.
+
+### circlePacking.js
+Hier zal als eerst de diameter opgehaald worden van een <div> element die is aangemaakt in de html van de pagina, hiermee zal de grote van het <svg> element worden bepaald.
 
 
-#### circlePacking.js
-#### lineChart.js
-#### slider.js
+
+
+de data die van main.js afkomt zal worden omgezet naar bruikbare data door middel van de functie d3.stack. hiermee kunnen de areas worden gemaakt voor de chart.
+
+
+
+### lineChart.js
+### slider.js
 
 
 
