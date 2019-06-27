@@ -39,3 +39,6 @@ Alle javascript codes staan in de folder code. de html pagina's staan in de map 
 
 ## link naar web page
 Website: https://melsvaneck.github.io/minorProject/
+
+## link naar de video
+Filmpje: https://youtu.be/beY-hqlqjmI
